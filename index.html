@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Seedtobloom · communication visuelle pensée pour la vraie vie</title>
+<meta name="description" content="Cindy, graphiste éco-responsable basée à Lille. Identités visuelles, supports de communication et accompagnement long terme pour structures engagées et métiers de bouche.">
+
+<link rel="stylesheet" href="project/styles/tokens.css">
+<link rel="stylesheet" href="project/styles/site.css">
+
+<style>
+/* prevent bone flash on terre hero */
+html, body { background: var(--terre); }
+
+/* ── Layout wrappers ─────────────────────────────────────── */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+/* ── Header ──────────────────────────────────────────────── */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--terre); color: var(--paille);
+  transition: box-shadow 240ms var(--ease-out-soft);
+}
+.site-header.scrolled { box-shadow: 0 1px 0 var(--line-on-terre); }
+.header-inner {
+  max-width: 1240px; margin: 0 auto; padding: 22px 40px;
+  display: grid; grid-template-columns: 180px 1fr auto;
+  align-items: center; gap: 24px;
+}
+.logo-link { display: flex; flex-direction: column; text-decoration: none; color: inherit; line-height: 1; }
+.logo-kicker { font-family: var(--font-display); font-style: italic; font-size: 13px; opacity: 0.6; letter-spacing: 0.04em; margin-bottom: 1px; }
+.logo-word { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 30px; letter-spacing: -0.005em; }
+.header-nav { display: flex; gap: 32px; justify-content: center; list-style: none; margin: 0; padding: 0; }
+.header-nav a {
+  font-family: var(--font-micro); font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--paille); text-decoration: none; opacity: 0.82;
+  padding-bottom: 4px; border-bottom: 1px solid transparent;
+  transition: all 240ms var(--ease-out-soft);
+}
+.header-nav a:hover { opacity: 1; border-bottom-color: var(--paille); }
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  background: var(--terre); color: var(--paille);
+  padding-top: 64px; overflow: hidden; position: relative;
+}
+.hero-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: minmax(0, 1.18fr) minmax(0, 1fr);
+  gap: 56px; align-items: end; min-height: calc(100vh - 96px);
+}
+.hero-left { padding: 56px 0 88px; display: flex; flex-direction: column; gap: 28px; }
+.hero-surtitle {
+  font-family: var(--font-micro); font-size: 11.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--fg-on-terre-muted);
+  display: inline-flex; align-items: center; gap: 12px; margin: 0;
+}
+.hero-surtitle-dash { width: 22px; height: 1px; background: var(--paille); opacity: 0.55; }
+.hero-h1 {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(44px, 5.6vw, 82px); line-height: 1.02;
+  letter-spacing: -0.015em; color: var(--paille); margin: 0; text-wrap: balance;
+}
+.hero-h1 em { font-style: italic; color: var(--glycine); font-weight: 400; }
+.pain-strip {
+  display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 14px;
+  border-top: 1px solid var(--line-on-terre); border-bottom: 1px solid var(--line-on-terre);
+}
+.pain-cell {
+  padding: 20px 22px 20px 0; display: flex; flex-direction: column; gap: 6px;
+  border-right: 1px solid var(--line-on-terre);
+}
+.pain-cell:last-child { padding: 20px 0 20px 22px; border-right: none; }
+.pain-num { font-family: var(--font-display); font-style: italic; font-size: 18px; opacity: 0.65; }
+.pain-label { font-family: var(--font-body); font-size: 15px; line-height: 1.35; }
+.hero-cta-row { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.hero-right { position: relative; align-self: end; }
+.portrait-wrap { position: relative; width: 100%; aspect-ratio: 0.86 / 1; max-width: 460px; margin-left: auto; overflow: hidden; }
+.portrait-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; filter: contrast(1.02); }
+.hero-gutter {
+  position: absolute; right: 0; top: 24px; bottom: 24px; width: 28px;
+  pointer-events: none; display: flex; flex-direction: column;
+  justify-content: space-between; align-items: center; color: var(--fg-on-terre-muted);
+}
+.gutter-n { font-family: var(--font-display); font-style: italic; font-size: 14px; }
+.gutter-w { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.30em; text-transform: lowercase; }
+.scroll-hint {
+  position: absolute; bottom: 24px; right: 40px;
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em;
+  text-transform: uppercase; color: var(--fg-on-terre-muted);
+}
+
+/* ── Section eyebrow utility ─────────────────────────────── */
+.sec-eyebrow {
+  font-family: var(--font-micro); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; line-height: 1;
+  display: inline-flex; align-items: center; gap: 10px; margin: 0;
+}
+.sec-eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; opacity: 0.55; }
+
+/* ── Portfolio ────────────────────────────────────────────── */
+.portfolio { background: var(--bone); color: var(--terre); padding: 128px 0 96px; }
+.portfolio-head {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 56px; align-items: end; margin-bottom: 72px;
+}
+.portfolio-head-l { display: flex; flex-direction: column; gap: 24px; }
+.portfolio-h2 {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,4.4vw,60px);
+  line-height: 1.04; letter-spacing: -0.012em; margin: 0; color: var(--terre); text-wrap: balance; max-width: 540px;
+}
+.portfolio-h2 em { font-style: italic; color: var(--glycine-900); font-weight: 400; }
+.portfolio-lede { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--terre-600); margin: 0; max-width: 420px; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 64px 56px; }
+.proj-card { display: flex; flex-direction: column; gap: 18px; text-decoration: none; color: inherit; }
+.proj-thumb { position: relative; aspect-ratio: 4/3; overflow: hidden; border-radius: 2px; transition: transform 480ms var(--ease-out-soft); }
+.proj-card:hover .proj-thumb { transform: translateY(-4px); }
+.proj-thumb-bg { position: absolute; inset: 0; }
+.proj-thumb-overlay { position: absolute; inset: 0; mix-blend-mode: screen; }
+.proj-thumb-gutter {
+  position: absolute; left: 14px; top: 14px; bottom: 14px; width: 22px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  color: var(--terre); mix-blend-mode: multiply; opacity: 0.55;
+}
+.proj-thumb-n { font-family: var(--font-display); font-style: italic; font-size: 14px; }
+.proj-thumb-w { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-micro); font-size: 9.5px; letter-spacing: 0.30em; text-transform: lowercase; }
+.proj-mono { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: flex-end; padding: 0 28px 22px 0; }
+.proj-mono span { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 92px; line-height: 0.85; color: rgba(255,250,239,.86); letter-spacing: -0.02em; }
+.proj-meta { display: flex; gap: 14px; font-family: var(--font-micro); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terre-600); }
+.proj-meta-dot { opacity: 0.4; }
+.proj-title { font-family: var(--font-display); font-weight: 300; font-size: 30px; line-height: 1.12; color: var(--terre); margin: 0; text-wrap: balance; }
+.proj-title em { font-style: italic; font-weight: 400; }
+.proj-desc { font-family: var(--font-body); font-size: 15.5px; line-height: 1.5; color: var(--terre-600); margin: 0; max-width: 440px; }
+.portfolio-foot {
+  margin-top: 88px; padding-top: 32px; border-top: 1px solid var(--line-on-bone);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+}
+.portfolio-count { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--terre-600); }
+
+/* ── ForWhom ──────────────────────────────────────────────── */
+.forwhom { background: var(--nuit); color: var(--brume); padding: 128px 0; }
+.forwhom-head {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  gap: 56px; margin-bottom: 64px; align-items: end;
+}
+.forwhom-h2 {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,4.2vw,56px);
+  line-height: 1.06; letter-spacing: -0.012em; margin: 0; color: var(--brume); max-width: 520px; text-wrap: balance;
+}
+.forwhom-h2 em { font-style: italic; font-weight: 400; }
+.forwhom-lede { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--fg-on-nuit-muted); margin: 0; max-width: 440px; }
+.forwhom-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px; }
+.fw-card {
+  position: relative; border: 1px solid var(--line-on-nuit);
+  padding: 40px 36px 36px; display: flex; flex-direction: column; gap: 20px; min-height: 380px;
+}
+.fw-card-tag {
+  position: absolute; top: -9px; left: 28px; background: var(--nuit); padding: 0 12px;
+  font-family: var(--font-micro); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.30em; text-transform: uppercase; color: var(--brume);
+}
+.fw-card-num { font-family: var(--font-display); font-style: italic; font-size: 32px; color: var(--brume); opacity: 0.55; line-height: 1; margin: 0; }
+.fw-card-title { font-family: var(--font-display); font-weight: 300; font-size: 30px; line-height: 1.15; color: var(--brume); margin: 4px 0 0; text-wrap: balance; }
+.fw-card-title em { font-style: italic; font-weight: 400; }
+.fw-card-body { font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--fg-on-nuit-muted); margin: 0; }
+.fw-needs-lbl { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fg-on-nuit-muted); margin: 20px 0 0; }
+.fw-needs-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.fw-needs-item { font-family: var(--font-body); font-size: 15.5px; line-height: 1.45; color: var(--brume); display: flex; gap: 14px; align-items: baseline; }
+.fw-bullet { font-family: var(--font-display); font-style: italic; font-size: 14px; color: var(--brume); opacity: 0.5; min-width: 18px; }
+
+/* ── Services ─────────────────────────────────────────────── */
+.services { background: var(--bone); color: var(--terre); padding: 128px 0; }
+.services-head {
+  display: grid; grid-template-columns: minmax(0,1.05fr) minmax(0,1fr);
+  gap: 56px; margin-bottom: 64px; align-items: end;
+}
+.services-h2 {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,4.4vw,60px);
+  line-height: 1.05; letter-spacing: -0.012em; margin: 0; color: var(--terre); max-width: 580px; text-wrap: balance;
+}
+.services-h2 em { font-style: italic; color: var(--glycine-900); font-weight: 400; }
+.services-lede { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--terre-600); margin: 0; max-width: 440px; }
+.services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; align-items: stretch; }
+.svc-card {
+  background: var(--bg-card); border: 1px solid var(--line-on-bone);
+  padding: 36px 32px 30px; display: flex; flex-direction: column; gap: 18px; min-height: 480px;
+  transition: transform 320ms var(--ease-out-soft), box-shadow 320ms var(--ease-out-soft);
+}
+.svc-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-2); }
+.svc-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.svc-num { font-family: var(--font-display); font-style: italic; font-size: 38px; color: var(--terre); opacity: 0.85; line-height: 1; }
+.svc-tag { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--terre-600); }
+.svc-title { font-family: var(--font-display); font-weight: 300; font-size: 28px; line-height: 1.12; margin: 0; color: var(--terre); text-wrap: balance; }
+.svc-title em { font-style: italic; font-weight: 400; color: var(--glycine-900); }
+.svc-body { font-family: var(--font-body); font-size: 15.5px; line-height: 1.5; color: var(--terre-600); margin: 0; }
+.svc-divider { margin: 6px 0; border-top: 1px solid var(--line-on-bone); }
+.svc-deliv-lbl { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--terre-600); margin: 0; }
+.svc-deliv-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.svc-deliv-item { font-family: var(--font-body); font-size: 14.5px; line-height: 1.4; color: var(--terre); display: flex; gap: 12px; align-items: baseline; }
+.svc-deliv-bullet { width: 14px; height: 1px; background: var(--terre-400); display: inline-block; transform: translateY(-4px); flex-shrink: 0; }
+.svc-foot { margin-top: auto; padding-top: 18px; }
+
+/* ── Approach ─────────────────────────────────────────────── */
+.approach { background: var(--terre); color: var(--paille); padding: 128px 0; overflow: hidden; }
+.approach-inner {
+  max-width: 1240px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: minmax(0,1.4fr) minmax(0,1fr); gap: 80px; align-items: start;
+}
+.approach-quote {
+  font-family: var(--font-display); font-weight: 300; font-style: italic;
+  font-size: clamp(40px,5.2vw,76px); line-height: 1.04; letter-spacing: -0.012em;
+  margin: 0; color: var(--paille); text-wrap: balance;
+}
+.approach-quote .accent { color: var(--glycine); }
+.approach-attr {
+  margin-top: 32px; padding-top: 18px; border-top: 1px solid var(--line-on-terre);
+  display: flex; gap: 20px; align-items: center; max-width: 360px;
+}
+.attr-lbl { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fg-on-terre-muted); }
+.attr-name { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--paille); }
+.approach-right { display: flex; flex-direction: column; gap: 28px; padding-top: 56px; }
+.approach-body { font-family: var(--font-body); font-size: 17px; line-height: 1.6; color: var(--paille); margin: 0; }
+.approach-body-muted { color: var(--fg-on-terre-muted); }
+.vision-frame { position: relative; border: 1px solid var(--line-on-terre); padding: 28px 28px 26px; margin-top: 12px; }
+.vision-lbl {
+  position: absolute; top: -9px; left: 22px; background: var(--terre); padding: 0 12px;
+  font-family: var(--font-micro); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.30em; text-transform: uppercase; color: var(--paille);
+}
+.vision-text { font-family: var(--font-display); font-style: italic; font-weight: 300; font-size: 22px; line-height: 1.3; color: var(--paille); margin: 0; text-wrap: balance; }
+
+/* ── Testimonials ─────────────────────────────────────────── */
+.testimonials { background: var(--bone); color: var(--terre); padding: 128px 0; }
+.tm-head {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  gap: 40px; margin-bottom: 72px; flex-wrap: wrap;
+}
+.tm-h2 {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,4.4vw,60px);
+  line-height: 1.05; letter-spacing: -0.012em; margin: 0; color: var(--terre); max-width: 600px; text-wrap: balance;
+}
+.tm-h2 em { font-style: italic; color: var(--glycine-900); font-weight: 400; }
+.tm-counter { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--terre-600); white-space: nowrap; }
+.tm-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; align-items: start; }
+.tm-card {
+  background: var(--bg-card); border: 1px solid var(--line-on-bone);
+  padding: 36px 32px 28px; display: flex; flex-direction: column; gap: 22px; min-height: 380px;
+}
+.tm-card--mid { transform: translateY(36px); }
+.tm-qmark { font-family: var(--font-display); font-style: italic; font-size: 64px; color: var(--glycine-900); line-height: 0.6; height: 32px; margin: 0; opacity: 0.85; }
+.tm-quote { font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: 22px; line-height: 1.3; color: var(--terre); margin: 0; text-wrap: pretty; }
+.tm-meta {
+  margin-top: auto; padding-top: 22px; border-top: 1px solid var(--line-on-bone);
+  display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; gap: 16px;
+}
+.tm-meta-l { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tm-name { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--terre); }
+.tm-role { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--terre-600); }
+.tm-link { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--terre); text-decoration: none; padding-bottom: 3px; border-bottom: 1px solid var(--terre); white-space: nowrap; flex-shrink: 0; }
+
+/* ── FAQ ──────────────────────────────────────────────────── */
+.faq { background: var(--nuit); color: var(--brume); padding: 128px 0; }
+.faq-head {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr);
+  gap: 56px; margin-bottom: 72px; align-items: end;
+}
+.faq-h2 {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(36px,4.2vw,56px);
+  line-height: 1.06; letter-spacing: -0.012em; margin: 0; color: var(--brume); max-width: 460px; text-wrap: balance;
+}
+.faq-h2 em { font-style: italic; font-weight: 400; }
+.faq-lede { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--fg-on-nuit-muted); margin: 0; max-width: 440px; }
+.faq-list { display: grid; gap: 14px; }
+.faq-row {
+  border: 1px solid var(--line-on-nuit); overflow: hidden;
+  transition: border-color 240ms var(--ease-out-soft);
+}
+.faq-row:hover { border-color: rgba(186,209,253,.45); }
+.faq-row.open { border-color: rgba(186,209,253,.65); }
+.faq-btn {
+  display: grid; grid-template-columns: 64px 1fr auto; align-items: center; gap: 24px;
+  padding: 26px 32px; width: 100%; background: none; border: 0;
+  cursor: pointer; color: inherit; text-align: left; font-family: inherit;
+}
+.faq-qnum { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--brume); opacity: 0.55; }
+.faq-qtext { font-family: var(--font-display); font-weight: 300; font-size: 22px; line-height: 1.25; color: var(--brume); margin: 0; }
+.faq-qtext em { font-style: italic; font-weight: 400; }
+.faq-toggle {
+  width: 28px; height: 28px; border: 1px solid var(--line-on-nuit); border-radius: 999px;
+  display: flex; align-items: center; justify-content: center; color: var(--brume);
+  font-family: var(--font-micro); font-size: 13px; flex-shrink: 0;
+  transition: transform 240ms var(--ease-out-soft), background 240ms var(--ease-out-soft), border-color 240ms var(--ease-out-soft), color 240ms var(--ease-out-soft);
+}
+.faq-row.open .faq-toggle { background: var(--brume); color: var(--nuit); border-color: var(--brume); transform: rotate(45deg); }
+.faq-answer {
+  display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 0 32px;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 400ms var(--ease-out-soft), opacity 280ms var(--ease-out-soft), padding-bottom 280ms var(--ease-out-soft);
+}
+.faq-row.open .faq-answer { max-height: 320px; opacity: 1; padding-bottom: 28px; }
+.faq-atext { font-family: var(--font-body); font-size: 16px; line-height: 1.6; margin: 0; color: var(--fg-on-nuit-muted); grid-column: 2/3; max-width: 640px; }
+.faq-foot {
+  margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--line-on-nuit);
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 18px;
+}
+.faq-foot-text { font-family: var(--font-body); font-style: italic; font-size: 17px; color: var(--fg-on-nuit-muted); margin: 0; }
+
+/* ── Final CTA ────────────────────────────────────────────── */
+.finalcta { background: var(--terre); color: var(--paille); padding: 144px 0 128px; position: relative; overflow: hidden; }
+.finalcta-inner {
+  max-width: 1100px; margin: 0 auto; padding: 0 40px;
+  display: grid; grid-template-columns: 1fr; gap: 32px; position: relative;
+}
+.finalcta-h {
+  font-family: var(--font-display); font-weight: 300; font-size: clamp(48px,6.2vw,92px);
+  line-height: 1.0; letter-spacing: -0.015em; margin: 0; color: var(--paille); text-wrap: balance; max-width: 940px;
+}
+.finalcta-h em { font-style: italic; color: var(--glycine); font-weight: 400; }
+.finalcta-lede { font-family: var(--font-body); font-size: 19px; line-height: 1.55; color: var(--paille); margin: 8px 0 0; max-width: 540px; }
+.finalcta-row { margin-top: 22px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+.finalcta-meta { display: flex; flex-direction: column; gap: 4px; }
+.finalcta-meta-top { font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fg-on-terre-muted); }
+.finalcta-meta-bot { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--paille); }
+.finalcta-gutter {
+  position: absolute; right: 16px; top: 24px; bottom: 24px;
+  display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+  color: var(--fg-on-terre-muted); pointer-events: none;
+}
+.finalcta-gn { font-family: var(--font-display); font-style: italic; font-size: 16px; }
+.finalcta-gw { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--font-micro); font-size: 10px; letter-spacing: 0.32em; text-transform: lowercase; }
+
+/* ── Footer ───────────────────────────────────────────────── */
+.site-footer { background: var(--nuit); color: var(--brume); padding: 96px 0 32px; }
+.footer-top {
+  display: grid; grid-template-columns: minmax(0,1.4fr) repeat(3,minmax(0,1fr));
+  gap: 56px; padding-bottom: 64px; border-bottom: 1px solid var(--line-on-nuit);
+}
+.footer-brand { display: flex; flex-direction: column; gap: 18px; }
+.footer-logo-k { font-family: var(--font-display); font-style: italic; font-size: 14px; opacity: 0.55; letter-spacing: 0.04em; }
+.footer-logo-w { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: 36px; color: var(--brume); letter-spacing: -0.005em; line-height: 1; }
+.footer-tagline { font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: var(--fg-on-nuit-muted); margin: 4px 0 0; max-width: 320px; }
+.footer-contact { margin-top: 22px; display: flex; flex-direction: column; gap: 6px; }
+.footer-contact-a { font-family: var(--font-display); font-style: italic; font-size: 17px; color: var(--brume); text-decoration: none; padding-bottom: 2px; width: fit-content; border-bottom: 1px solid transparent; transition: border-color 240ms var(--ease-out-soft); }
+.footer-contact-a:hover { border-bottom-color: var(--brume); }
+.footer-col { display: flex; flex-direction: column; gap: 14px; }
+.footer-col-h { font-family: var(--font-micro); font-size: 10px; font-weight: 500; letter-spacing: 0.26em; text-transform: uppercase; color: var(--fg-on-nuit-muted); margin: 0 0 4px; }
+.footer-lnk { font-family: var(--font-body); font-size: 15.5px; color: var(--brume); text-decoration: none; padding-bottom: 1px; border-bottom: 1px solid transparent; transition: border-color 240ms var(--ease-out-soft); width: fit-content; }
+.footer-lnk:hover { border-bottom-color: var(--brume); }
+.footer-bot { margin-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.footer-copy { font-family: var(--font-micro); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-on-nuit-muted); }
+.footer-legal { display: flex; gap: 22px; font-family: var(--font-micro); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; }
+.footer-legal a { color: var(--fg-on-nuit-muted); text-decoration: none; }
+.footer-legal a:hover { color: var(--brume); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo-link" aria-label="Seedtobloom, accueil">
+      <span class="logo-kicker">studio</span>
+      <span class="logo-word">Seedtobloom</span>
+    </a>
+    <nav aria-label="Navigation principale">
+      <ul class="header-nav">
+        <li><a href="project/services.html">Services</a></li>
+        <li><a href="project/portfolio.html">Portfolio</a></li>
+        <li><a href="project/a-propos.html">À propos</a></li>
+        <li><a href="project/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn--paille" style="padding:12px 22px;font-size:11px;letter-spacing:.12em;">Appel découverte</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════ HERO ════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-surtitle">
+        <span class="hero-surtitle-dash"></span>
+        Communication visuelle pensée pour la vraie vie
+      </p>
+      <h1 class="hero-h1">
+        Votre communication ne devrait pas devenir un <em>frein</em> à votre activité.
+      </h1>
+
+      <div class="pain-strip" aria-label="Problèmes fréquents">
+        <div class="pain-cell">
+          <span class="pain-num">01</span>
+          <span class="pain-label">Incohérence des supports</span>
+        </div>
+        <div class="pain-cell">
+          <span class="pain-num">02</span>
+          <span class="pain-label">Manque de temps au quotidien</span>
+        </div>
+        <div class="pain-cell">
+          <span class="pain-num">03</span>
+          <span class="pain-label">Outils compliqués à faire vivre</span>
+        </div>
+      </div>
+
+      <div class="hero-cta-row">
+        <a href="#contact" class="btn btn--paille">Parlons de votre projet</a>
+        <a href="#realisations" class="btn-ghost">Voir les réalisations <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="portrait-wrap">
+        <img src="project/assets/portrait-halftone-terre.png" alt="Portrait de Cindy, graphiste Seedtobloom">
+      </div>
+      <div class="hero-gutter" aria-hidden="true">
+        <span class="gutter-n">00</span>
+        <span class="gutter-w">accueil</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><span>↓</span><span>défiler</span></div>
+</section>
+
+<!-- ═══════════════════════════════════ PORTFOLIO ═══════════════════════════════ -->
+<section id="realisations" class="portfolio">
+  <div class="wrap">
+    <div class="portfolio-head">
+      <div class="portfolio-head-l">
+        <p class="sec-eyebrow" style="color:var(--terre-600);margin-bottom:24px;">Réalisations sélectionnées</p>
+        <h2 class="portfolio-h2">Quelques projets <em>choisis</em>, pour le contexte&nbsp;réel.</h2>
+      </div>
+      <p class="portfolio-lede">Identités, supports imprimés, sites simples. Toujours pensés pour être réutilisés par les équipes&nbsp;sans moi.</p>
+    </div>
+
+    <div class="portfolio-grid">
+      <a href="project/portfolio.html" class="proj-card">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(140deg,#d6c9a8 0%,#8a7253 55%,#5b432b 100%)"></div>
+          <div class="proj-thumb-overlay" style="background:radial-gradient(60% 50% at 30% 35%,rgba(228,209,254,.35) 0%,transparent 70%)"></div>
+          <div class="proj-thumb-gutter" aria-hidden="true">
+            <span class="proj-thumb-n">01</span><span class="proj-thumb-w">identité</span>
+          </div>
+          <div class="proj-mono" aria-hidden="true"><span>EE</span></div>
+        </div>
+        <div class="proj-meta"><span>Structure engagée</span><span class="proj-meta-dot">·</span><span>2025</span></div>
+        <h3 class="proj-title">Envol <em>environnement</em></h3>
+        <p class="proj-desc">Identité visuelle complète et système de supports terrain pour une association environnementale en Hauts-de-France.</p>
+      </a>
+
+      <a href="project/portfolio.html" class="proj-card">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(160deg,#f3e5c1 0%,#c8b290 60%,#856a47 100%)"></div>
+          <div class="proj-thumb-overlay" style="background:radial-gradient(60% 50% at 30% 35%,rgba(186,209,253,.30) 0%,transparent 70%)"></div>
+          <div class="proj-thumb-gutter" aria-hidden="true">
+            <span class="proj-thumb-n">02</span><span class="proj-thumb-w">menu</span>
+          </div>
+          <div class="proj-mono" aria-hidden="true"><span>TR</span></div>
+        </div>
+        <div class="proj-meta"><span>Traiteur · métiers de bouche</span><span class="proj-meta-dot">·</span><span>2024</span></div>
+        <h3 class="proj-title">Traiteur <em>Rémy</em></h3>
+        <p class="proj-desc">Carte évolutive, étiquettes plats du jour et carte de visite — pensés pour être réimprimés à la semaine sans repartir de zéro.</p>
+      </a>
+
+      <a href="project/portfolio.html" class="proj-card">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#e4d1fe 0%,#b89bd9 55%,#6c4ea4 100%)"></div>
+          <div class="proj-thumb-overlay" style="background:radial-gradient(60% 50% at 30% 35%,rgba(242,229,194,.40) 0%,transparent 70%)"></div>
+          <div class="proj-thumb-gutter" aria-hidden="true">
+            <span class="proj-thumb-n">03</span><span class="proj-thumb-w">site</span>
+          </div>
+          <div class="proj-mono" aria-hidden="true"><span>MM</span></div>
+        </div>
+        <div class="proj-meta"><span>Site one-pager · indépendante</span><span class="proj-meta-dot">·</span><span>2025</span></div>
+        <h3 class="proj-title">Marie <em>Minchella</em></h3>
+        <p class="proj-desc">Webdesign et rédaction pour une thérapeute indépendante. Maquette simple, ton juste, mise à jour autonome.</p>
+      </a>
+
+      <a href="project/portfolio.html" class="proj-card">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(150deg,#bad1fd 0%,#6f8bc2 55%,#2a3b5a 100%)"></div>
+          <div class="proj-thumb-overlay" style="background:radial-gradient(60% 50% at 30% 35%,rgba(242,229,194,.35) 0%,transparent 70%)"></div>
+          <div class="proj-thumb-gutter" aria-hidden="true">
+            <span class="proj-thumb-n">04</span><span class="proj-thumb-w">archives</span>
+          </div>
+          <div class="proj-mono" aria-hidden="true"><span>+12</span></div>
+        </div>
+        <div class="proj-meta"><span>Sélection · 2022 — 2025</span></div>
+        <h3 class="proj-title">Autres <em>projets</em></h3>
+        <p class="proj-desc">Une douzaine de collaborations plus discrètes : éditions, plaquettes, signalétique, refontes de cartes et chartes graphiques.</p>
+      </a>
+    </div>
+
+    <div class="portfolio-foot">
+      <span class="portfolio-count">04 / 16 projets visibles</span>
+      <a href="project/portfolio.html" class="btn-ghost" style="color:var(--terre);">Voir le portfolio complet <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ POUR QUI ════════════════════════════════ -->
+<section id="pour-qui" class="forwhom">
+  <div class="wrap">
+    <div class="forwhom-head">
+      <div>
+        <p class="sec-eyebrow" style="color:var(--fg-on-nuit-muted);margin-bottom:24px;">Pour qui je travaille</p>
+        <h2 class="forwhom-h2">Deux types de structures, une même <em>exigence</em>.</h2>
+      </div>
+      <p class="forwhom-lede">Je travaille principalement avec deux familles de clients. Ils n'ont pas le même métier, mais ils partagent les mêmes contraintes : peu de temps, peu d'équipe, beaucoup à raconter.</p>
+    </div>
+
+    <div class="forwhom-grid">
+      <article class="fw-card">
+        <span class="fw-card-tag">01 · Côté structures</span>
+        <p class="fw-card-num">01</p>
+        <h3 class="fw-card-title">Structures <em>engagées</em></h3>
+        <p class="fw-card-body">Associations, coopératives, projets à mission. Vous avez une équipe motivée mais peu de temps pour faire vivre vos supports.</p>
+        <p class="fw-needs-lbl">Ce dont vous avez besoin</p>
+        <ul class="fw-needs-list">
+          <li class="fw-needs-item"><span class="fw-bullet">01</span><span>Cohérence visuelle sans dépendre du graphiste à chaque fois</span></li>
+          <li class="fw-needs-item"><span class="fw-bullet">02</span><span>Outils simples à reprendre, à réimprimer, à dupliquer</span></li>
+          <li class="fw-needs-item"><span class="fw-bullet">03</span><span>Un cadre clair, pas une charte de 80 pages</span></li>
+        </ul>
+      </article>
+
+      <article class="fw-card">
+        <span class="fw-card-tag">02 · Côté food</span>
+        <p class="fw-card-num">02</p>
+        <h3 class="fw-card-title">Traiteurs & métiers de <em>bouche</em></h3>
+        <p class="fw-card-body">Traiteurs, artisans, petites cuisines. Vos cartes bougent, vos prix bougent, vos formats bougent — votre communication doit suivre.</p>
+        <p class="fw-needs-lbl">Ce dont vous avez besoin</p>
+        <ul class="fw-needs-list">
+          <li class="fw-needs-item"><span class="fw-bullet">01</span><span>Confiance dès le premier devis envoyé</span></li>
+          <li class="fw-needs-item"><span class="fw-bullet">02</span><span>Clarté sur les prestations, les prix, les délais</span></li>
+          <li class="fw-needs-item"><span class="fw-bullet">03</span><span>Gain de temps : un système, pas du sur-mesure jetable</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ SERVICES ════════════════════════════════ -->
+<section id="services" class="services">
+  <div class="wrap">
+    <div class="services-head">
+      <div>
+        <p class="sec-eyebrow" style="color:var(--terre-600);margin-bottom:22px;">Services</p>
+        <h2 class="services-h2">Trois manières de travailler <em>ensemble</em>.</h2>
+      </div>
+      <p class="services-lede">Du projet ponctuel à l'accompagnement long terme. À chaque fois, l'idée est la même : vous rendre autonome plutôt que dépendant.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="svc-card">
+        <div class="svc-top"><span class="svc-num">01</span><span class="svc-tag">fondation</span></div>
+        <h3 class="svc-title">Identité <em>visuelle</em></h3>
+        <p class="svc-body">Une image claire, cohérente, et surtout : facile à faire vivre une fois que je suis partie.</p>
+        <div class="svc-divider"></div>
+        <p class="svc-deliv-lbl">Ce que vous recevez</p>
+        <ul class="svc-deliv-list">
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Logo, palette, typographie</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Charte courte (10 pages max)</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Templates Canva ou InDesign</span></li>
+        </ul>
+        <div class="svc-foot"><a href="project/identite-visuelle.html" class="btn-ghost" style="color:var(--terre);">En savoir plus <span class="arrow">→</span></a></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-top"><span class="svc-num">02</span><span class="svc-tag">usages</span></div>
+        <h3 class="svc-title">Supports de <em>communication</em></h3>
+        <p class="svc-body">Print, digital, signalétique. Conçus selon vos usages réels, pas selon un cahier théorique.</p>
+        <div class="svc-divider"></div>
+        <p class="svc-deliv-lbl">Ce que vous recevez</p>
+        <ul class="svc-deliv-list">
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Cartes, flyers, plaquettes, kakémonos</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Cartes de menus, étiquettes, devis</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Webdesign one-pager ou Showit</span></li>
+        </ul>
+        <div class="svc-foot"><a href="project/supports-de-communication.html" class="btn-ghost" style="color:var(--terre);">En savoir plus <span class="arrow">→</span></a></div>
+      </article>
+
+      <article class="svc-card">
+        <div class="svc-top"><span class="svc-num">03</span><span class="svc-tag">accompagnement</span></div>
+        <h3 class="svc-title">Partenaire <em>créative</em></h3>
+        <p class="svc-body">Un forfait mensuel pour ne pas avoir à repartir de zéro à chaque nouveau besoin.</p>
+        <div class="svc-divider"></div>
+        <p class="svc-deliv-lbl">Ce que vous recevez</p>
+        <ul class="svc-deliv-list">
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>4 à 8 heures par mois</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Réunion stratégique trimestrielle</span></li>
+          <li class="svc-deliv-item"><span class="svc-deliv-bullet"></span><span>Accès direct par téléphone et email</span></li>
+        </ul>
+        <div class="svc-foot"><a href="project/services.html" class="btn-ghost" style="color:var(--terre);">En savoir plus <span class="arrow">→</span></a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ APPROCHE ════════════════════════════════ -->
+<section id="approche" class="approach">
+  <div class="approach-inner">
+    <div>
+      <p class="sec-eyebrow" style="color:var(--fg-on-terre-muted);margin-bottom:40px;">Approche · philosophie</p>
+      <h2 class="approach-quote">
+        Je ne crois pas aux <span class="accent">solutions parfaites</span>.<br>
+        Je crois aux choix cohérents avec les usages&nbsp;réels.
+      </h2>
+      <div class="approach-attr">
+        <span class="attr-lbl">Note · 2025</span>
+        <span class="attr-name">Cindy, Seedtobloom</span>
+      </div>
+    </div>
+
+    <div class="approach-right">
+      <p class="approach-body">« Durable » ne veut pas dire « toujours réutilisable ». Une carte de menu pour un traiteur n'a pas la même vie qu'une plaquette institutionnelle. Chaque support dépend de son contexte : qui le tient, où, quand, combien&nbsp;de fois.</p>
+      <p class="approach-body approach-body-muted">Ma vision du design éco-responsable est pragmatique : produire ce qui sera réellement utilisé, dans des formats et des matières qui font sens. Pas un argument vert collé sur un projet calqué d'ailleurs.</p>
+      <div class="vision-frame">
+        <span class="vision-lbl">Vision</span>
+        <p class="vision-text">Une communication pragmatique, utile, et qui ne pèse pas sur celles et ceux qui&nbsp;la font vivre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ TÉMOIGNAGES ═════════════════════════════ -->
+<section id="temoignages" class="testimonials">
+  <div class="wrap">
+    <div class="tm-head">
+      <div>
+        <p class="sec-eyebrow" style="color:var(--terre-600);margin-bottom:22px;">Témoignages</p>
+        <h2 class="tm-h2">Ce qu'en disent celles et ceux <em>avec qui</em> j'ai travaillé.</h2>
+      </div>
+      <span class="tm-counter">03 / 12 avis</span>
+    </div>
+
+    <div class="tm-grid">
+      <article class="tm-card">
+        <span class="tm-qmark" aria-hidden="true">"</span>
+        <p class="tm-quote">Cindy a pris le temps de comprendre comment on travaille sur le terrain avant de proposer quoi que ce soit. On a enfin des supports qu'on peut tenir dans le temps.</p>
+        <div class="tm-meta">
+          <div class="tm-meta-l">
+            <span class="tm-name">Léa M.</span>
+            <span class="tm-role">Envol environnement</span>
+          </div>
+          <a href="project/portfolio.html" class="tm-link">Voir le projet →</a>
+        </div>
+      </article>
+
+      <article class="tm-card tm-card--mid">
+        <span class="tm-qmark" aria-hidden="true">"</span>
+        <p class="tm-quote">Elle écrit comme on parle. Mes clients comprennent ma carte sans que je l'explique. C'est la première fois.</p>
+        <div class="tm-meta">
+          <div class="tm-meta-l">
+            <span class="tm-name">Rémy B.</span>
+            <span class="tm-role">Traiteur · Lille</span>
+          </div>
+          <a href="project/portfolio.html" class="tm-link">Voir le projet →</a>
+        </div>
+      </article>
+
+      <article class="tm-card">
+        <span class="tm-qmark" aria-hidden="true">"</span>
+        <p class="tm-quote">Ce que j'ai apprécié : pas de discours sur le branding. Des questions simples, des choix justes, un site qui me ressemble vraiment.</p>
+        <div class="tm-meta">
+          <div class="tm-meta-l">
+            <span class="tm-name">Marie Minchella</span>
+            <span class="tm-role">Thérapeute indépendante</span>
+          </div>
+          <a href="project/portfolio.html" class="tm-link">Voir le projet →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FAQ ════════════════════════════════════ -->
+<section id="faq" class="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <div>
+        <p class="sec-eyebrow" style="color:var(--fg-on-nuit-muted);margin-bottom:24px;">Questions fréquentes</p>
+        <h2 class="faq-h2">Tout ce que vous voudrez sans doute me <em>demander</em>.</h2>
+      </div>
+      <p class="faq-lede">Cinq questions qui reviennent à chaque premier rendez-vous. Si la vôtre n'est pas là, écrivez-moi : j'enrichis cette page régulièrement.</p>
+    </div>
+
+    <div class="faq-list" role="list">
+      <div class="faq-row open" role="listitem">
+        <button class="faq-btn" aria-expanded="true">
+          <span class="faq-qnum">01</span>
+          <h3 class="faq-qtext">Comment se passe <em>une collaboration</em> avec vous ?</h3>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p class="faq-atext">Toujours pareil : un appel découverte gratuit (30 min), puis un cahier de prise de brief écrit à quatre mains. Je propose ensuite un devis détaillé. Une fois validé, on travaille en deux étapes maximum : une direction posée, puis les déclinaisons. Pas de boucle de revue infinie.</p>
+        </div>
+      </div>
+
+      <div class="faq-row" role="listitem">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-qnum">02</span>
+          <h3 class="faq-qtext">Quels sont vos <em>délais</em> habituels ?</h3>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p class="faq-atext">Identité visuelle complète : 4 à 6 semaines. Carte de menu ou plaquette : 10 à 14 jours. Site one-pager : 3 à 5 semaines. Je n'accepte qu'un projet de fond par mois pour garder du temps disponible pour mes clients en forfait.</p>
+        </div>
+      </div>
+
+      <div class="faq-row" role="listitem">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-qnum">03</span>
+          <h3 class="faq-qtext">Qu'entendez-vous par <em>éco-conception</em> ?</h3>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p class="faq-atext">Concrètement : choix des papiers (recyclés, FSC, formats qui ne génèrent pas de chute), encres végétales quand c'est pertinent, et surtout : ne produire que ce qui sera vraiment utilisé. Le support le plus écologique reste celui qu'on n'imprime pas pour rien.</p>
+        </div>
+      </div>
+
+      <div class="faq-row" role="listitem">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-qnum">04</span>
+          <h3 class="faq-qtext">Travaillez-vous <em>à distance</em> ?</h3>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p class="faq-atext">Oui, principalement. Je suis basée à Lille mais 80 % de mes clients sont ailleurs en France. Visios ciblées, échanges écrits, et un Notion partagé pour suivre l'avancement. Je me déplace pour les projets locaux ou les lancements importants.</p>
+        </div>
+      </div>
+
+      <div class="faq-row" role="listitem">
+        <button class="faq-btn" aria-expanded="false">
+          <span class="faq-qnum">05</span>
+          <h3 class="faq-qtext">À qui appartiennent <em>les fichiers</em> à la fin ?</h3>
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-answer" role="region">
+          <p class="faq-atext">À vous, sans condition. Vous recevez l'ensemble des fichiers sources (.ai, .indd, .psd) et exportés, plus une licence d'usage illimitée. C'est précisé en clair sur le devis dès le départ. Aucune dépendance à long terme.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-foot">
+      <p class="faq-foot-text">Une autre question ? Posez-la simplement.</p>
+      <a href="project/contact.html" class="btn btn--brume">Poser ma question</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CTA FINAL ═══════════════════════════════ -->
+<section id="contact" class="finalcta">
+  <div class="finalcta-inner">
+    <p class="sec-eyebrow" style="color:var(--fg-on-terre-muted);">Et maintenant</p>
+    <h2 class="finalcta-h">Vous avez déjà assez à <em>gérer</em>.</h2>
+    <p class="finalcta-lede">Confiez-moi la partie communication : claire, cohérente, et surtout — finie une bonne fois pour toutes, sans repartir de zéro tous les six mois.</p>
+    <div class="finalcta-row">
+      <a href="project/contact.html" class="btn btn--glycine" style="padding:18px 32px;font-size:12px;">Réserver un appel découverte</a>
+      <div class="finalcta-meta">
+        <span class="finalcta-meta-top">30 minutes · sans engagement</span>
+        <span class="finalcta-meta-bot">Disponibilités sous 5 jours</span>
+      </div>
+    </div>
+  </div>
+  <div class="finalcta-gutter" aria-hidden="true">
+    <span class="finalcta-gn">07</span>
+    <span class="finalcta-gw">fin de page</span>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════ FOOTER ══════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div>
+          <div class="footer-logo-k">studio</div>
+          <div class="footer-logo-w">Seedtobloom</div>
+        </div>
+        <p class="footer-tagline">Communication visuelle pour structures engagées et métiers de bouche. Pensée pour la vraie vie.</p>
+        <div class="footer-contact">
+          <a href="mailto:bonjour@seedtobloom.fr" class="footer-contact-a">bonjour@seedtobloom.fr</a>
+          <a href="#" class="footer-contact-a">Lille · sur rendez-vous</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-h">Services</h4>
+        <a href="project/identite-visuelle.html" class="footer-lnk">Identité visuelle</a>
+        <a href="project/supports-de-communication.html" class="footer-lnk">Supports de communication</a>
+        <a href="project/services.html#partenaire" class="footer-lnk">Partenaire créative</a>
+        <a href="project/services.html" class="footer-lnk">Tous les services →</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-h">Le studio</h4>
+        <a href="project/portfolio.html" class="footer-lnk">Portfolio</a>
+        <a href="project/a-propos.html" class="footer-lnk">À propos</a>
+        <a href="#approche" class="footer-lnk">Approche</a>
+        <a href="#faq" class="footer-lnk">FAQ</a>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-h">Suivre</h4>
+        <a href="#" class="footer-lnk">Instagram</a>
+        <a href="#" class="footer-lnk">LinkedIn</a>
+        <a href="#" class="footer-lnk">Newsletter trimestrielle</a>
+        <a href="project/contact.html" class="footer-lnk">Contact direct →</a>
+      </div>
+    </div>
+
+    <div class="footer-bot">
+      <span class="footer-copy">© 2026 Seedtobloom · Cindy F.</span>
+      <nav class="footer-legal" aria-label="Liens légaux">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">CGV</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Sticky header shadow on scroll
+  var header = document.getElementById('site-header');
+  function updateHeader() { header.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+  updateHeader();
+
+  // FAQ accordion — one open at a time
+  var rows = document.querySelectorAll('.faq-row');
+  rows.forEach(function (row) {
+    var btn = row.querySelector('.faq-btn');
+    btn.addEventListener('click', function () {
+      var wasOpen = row.classList.contains('open');
+      rows.forEach(function (r) {
+        r.classList.remove('open');
+        r.querySelector('.faq-btn').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        row.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
