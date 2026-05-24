@@ -153,10 +153,11 @@ const svStyles = {
 const SERVICES = [
   {
     n: '01',
-    tag: 'fondation',
+    tag: 'identité visuelle éco-responsable',
     href: 'identite-visuelle.html',
+    cta: 'Découvrir l\'offre',
     title: ['Identité ', { em: 'visuelle' }],
-    body: 'Une image claire, cohérente, et surtout : facile à faire vivre une fois que je suis partie.',
+    body: 'Créer une image claire, crédible et cohérente qui reflète réellement vos valeurs — et que vos équipes arrivent à faire vivre.',
     deliv: [
       'Logo, palette, typographie',
       'Charte courte (10 pages max)',
@@ -165,10 +166,11 @@ const SERVICES = [
   },
   {
     n: '02',
-    tag: 'usages',
+    tag: 'supports de communication',
     href: 'supports-de-communication.html',
+    cta: 'Voir les supports',
     title: ['Supports de ', { em: 'communication' }],
-    body: 'Print, digital, signalétique. Conçus selon vos usages réels, pas selon un cahier théorique.',
+    body: 'Des supports beaux, structurés et faciles à utiliser par vos équipes au quotidien — print, digital, signalétique.',
     deliv: [
       'Cartes, flyers, plaquettes, kakémonos',
       'Cartes de menus, étiquettes, devis',
@@ -177,9 +179,11 @@ const SERVICES = [
   },
   {
     n: '03',
-    tag: 'accompagnement',
+    tag: 'partenaire créative · accompagnement',
+    href: 'services.html#partenaire',
+    cta: 'En savoir plus',
     title: ['Partenaire ', { em: 'créative' }],
-    body: 'Un forfait mensuel pour ne pas avoir à repartir de zéro à chaque nouveau besoin.',
+    body: 'Un accompagnement long terme pour faire évoluer votre communication sans perdre en cohérence.',
     deliv: [
       '4 à 8 heures par mois',
       'Réunion stratégique trimestrielle',
@@ -224,7 +228,7 @@ function ServiceCard({ s }) {
       </ul>
       <div style={svStyles.cardFooter}>
         <a href={s.href || 'services.html'} className="btn-ghost" style={{ color: 'var(--terre)' }}>
-          En savoir plus <span className="arrow">→</span>
+          {s.cta || 'En savoir plus'} <span className="arrow">→</span>
         </a>
       </div>
     </article>
