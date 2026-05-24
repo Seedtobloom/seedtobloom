@@ -177,3 +177,94 @@ button.btn-ghost, button.btn { font: inherit; }
   outline-offset: 2px;
   border-radius: 2px;
 }
+
+/* ── Mobile responsive ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .wrap { padding: 0 24px; }
+
+  /* Hero: stack columns */
+  #root [data-screen-label="00 Hero"] [style*="gridTemplateColumns: minmax(0, 1.18fr)"] {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+    padding: 40px 24px 56px !important;
+    gap: 40px !important;
+  }
+
+  /* Pain section: stack */
+  #root [data-screen-label="02 Problème"] [style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Approach: stack */
+  #root [data-screen-label="03 Approche"] [style*="1.4fr) minmax(0, 1fr)"] {
+    grid-template-columns: 1fr !important;
+    padding: 0 24px !important;
+  }
+  #root [data-screen-label="03 Approche"] [style*="repeat(4, 1fr)"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+
+  /* Services: stack */
+  #root [data-screen-label="03 Services"] [style*="repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* PensePour: stack */
+  #root [data-screen-label="05 Pensé pour"] [style*="1fr) minmax(0, 1.5fr)"] {
+    grid-template-columns: 1fr !important;
+    padding: 0 24px !important;
+  }
+
+  /* Portfolio: stack */
+  #root [data-screen-label="01 Portfolio"] [style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Differenciante: stack */
+  #root [data-screen-label="07 Différence"] [style*="repeat(2, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Process: stack */
+  #root [data-screen-label="09 Process"] [style*="80px 1fr 1fr"] {
+    grid-template-columns: 48px 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Testimonials: stack */
+  #root [data-screen-label="05 Témoignages"] [style*="repeat(3, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* AboutShort: stack */
+  #root [data-screen-label="11 À propos"] [style*="1fr) minmax(0, 1.2fr)"] {
+    grid-template-columns: 1fr !important;
+    padding: 0 24px !important;
+  }
+
+  /* FAQ: stack head */
+  #root [data-screen-label="06 FAQ"] [style*="minmax(0, 1fr) minmax(0, 1.1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Global inner padding reduction */
+  #root [style*="padding: '0 40px'"],
+  #root [style*='padding: "0 40px"'] {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Approach principles: single column */
+  #root [data-screen-label="03 Approche"] [style*="repeat(4, 1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Header inner */
+  #root header [style*="gridTemplateColumns"] {
+    grid-template-columns: 1fr auto !important;
+    padding: 0 20px !important;
+  }
+}

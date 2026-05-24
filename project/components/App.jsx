@@ -1,11 +1,14 @@
-/* App.jsx — homepage root. Wires Tweaks panel + composes sections in surface rhythm:
-   Hero (Terre) → Portfolio (Bone) → ForWhom (Nuit) → Services (Bone) → Approach (Terre)
-   → Testimonials (Bone) → FAQ (Nuit) → FinalCTA (Terre) → Footer (Nuit) */
+/* App.jsx — homepage root.
+   Surface rhythm:
+   Hero(Terre) → Ticker(Terre) → PainSection(Nuit) → Approach(Terre) → Services(Bone)
+   → PensePour(Nuit) → Portfolio(Bone) → Differenciante(Terre) → Process(Bone)
+   → EditorialBanner(Nuit) → Testimonials(Bone) → AboutShort(Bone) → FAQ(Nuit)
+   → FinalCTA(Terre) → Footer(Nuit) */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "portraitVariant": "terre",
   "displayWeight": 300,
-  "showPainStrip": true,
+  "showTrustStrip": true,
   "faqStartOpen": true,
   "compactSections": false
 }/*EDITMODE-END*/;
@@ -13,10 +16,7 @@ const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
-  // Apply display weight globally via CSS custom property
   React.useEffect(() => {
-    document.documentElement.style.setProperty('--display-weight', String(t.displayWeight));
-    // Apply by setting font-weight on all .display, .h-section, h1..h5 not styled inline.
     const styleEl = document.getElementById('__tweak-display-weight');
     if (styleEl) styleEl.remove();
     const s = document.createElement('style');
@@ -42,18 +42,24 @@ function App() {
     <>
       <Header />
       <main>
-        <Hero portraitVariant={t.portraitVariant} showPainStrip={t.showPainStrip} />
-        <Portfolio />
-        <ForWhom />
-        <Services />
+        <Hero portraitVariant={t.portraitVariant} showTrustStrip={t.showTrustStrip} />
+        <Ticker />
+        <PainSection />
         <Approach />
+        <Services />
+        <PensePour />
+        <Portfolio />
+        <Differenciante />
+        <Process />
+        <EditorialBanner />
         <Testimonials />
+        <AboutShort />
         <FAQ initialOpen={t.faqStartOpen ? 0 : -1} />
         <FinalCTA />
       </main>
       <Footer />
 
-      <TweaksPanel title="Tweaks · Seedtobloom">
+      <TweaksPanel title="Tweaks · Seed to Bloom">
         <TweakSection label="Hero" />
         <TweakRadio
           label="Portrait halftone"
@@ -62,9 +68,9 @@ function App() {
           onChange={(v) => setTweak('portraitVariant', v)}
         />
         <TweakToggle
-          label="Pain points strip"
-          value={t.showPainStrip}
-          onChange={(v) => setTweak('showPainStrip', v)}
+          label="Bandeau confiance"
+          value={t.showTrustStrip}
+          onChange={(v) => setTweak('showTrustStrip', v)}
         />
 
         <TweakSection label="Typographie" />

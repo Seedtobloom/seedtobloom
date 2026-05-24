@@ -1,6 +1,5 @@
-/* Hero.jsx — Terre surface, editorial split: headline left + halftone portrait right
-   Pain points sit as a 3-cell numbered strip below, before the CTAs.
-   Composition is DIFFERENT from the existing system mock (which centers the headline). */
+/* Hero.jsx — Terre surface, éditoriale.
+   H1 SEO caché + surtitre + titre principal + sous-texte + CTAs + portrait halftone. */
 
 const heroStyles = {
   section: {
@@ -19,7 +18,7 @@ const heroStyles = {
     gridTemplateColumns: 'minmax(0, 1.18fr) minmax(0, 1fr)',
     gap: 56,
     alignItems: 'end',
-    minHeight: 'calc(100vh - 96px)',
+    minHeight: 'calc(100vh - 72px)',
   },
   left: {
     paddingBottom: 88,
@@ -27,6 +26,17 @@ const heroStyles = {
     display: 'flex',
     flexDirection: 'column',
     gap: 28,
+  },
+  srOnly: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    padding: 0,
+    margin: -1,
+    overflow: 'hidden',
+    clip: 'rect(0,0,0,0)',
+    whiteSpace: 'nowrap',
+    borderWidth: 0,
   },
   surtitle: {
     fontFamily: 'var(--font-micro)',
@@ -45,46 +55,53 @@ const heroStyles = {
   h1: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 'clamp(44px, 5.6vw, 82px)',
-    lineHeight: 1.02,
+    fontSize: 'clamp(40px, 5.2vw, 78px)',
+    lineHeight: 1.03,
     letterSpacing: '-0.015em',
     color: 'var(--paille)',
     margin: 0,
     textWrap: 'balance',
-    maxWidth: 720,
+    maxWidth: 680,
   },
   emp: { fontStyle: 'italic', color: 'var(--glycine)', fontWeight: 400 },
-  painStrip: {
+  sub: {
+    fontFamily: 'var(--font-body)',
+    fontSize: 18,
+    lineHeight: 1.55,
+    color: 'var(--fg-on-terre-muted)',
+    margin: 0,
+    maxWidth: 500,
+  },
+  trustStrip: {
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
     gap: 0,
-    marginTop: 14,
+    marginTop: 6,
     borderTop: '1px solid var(--line-on-terre)',
     borderBottom: '1px solid var(--line-on-terre)',
   },
-  painCell: {
-    padding: '20px 22px 20px 0',
+  trustCell: {
+    padding: '18px 20px 18px 0',
     display: 'flex',
     flexDirection: 'column',
-    gap: 6,
+    gap: 4,
     borderRight: '1px solid var(--line-on-terre)',
   },
-  painCellLast: {
-    padding: '20px 0',
+  trustCellLast: {
+    padding: '18px 0 18px 20px',
     display: 'flex',
     flexDirection: 'column',
-    gap: 6,
-    paddingLeft: 22,
+    gap: 4,
   },
-  painNum: {
+  trustNum: {
     fontFamily: 'var(--font-display)',
     fontStyle: 'italic',
-    fontSize: 18,
+    fontSize: 17,
     opacity: 0.65,
   },
-  painLabel: {
+  trustLabel: {
     fontFamily: 'var(--font-body)',
-    fontSize: 15,
+    fontSize: 14,
     lineHeight: 1.35,
     color: 'var(--paille)',
   },
@@ -93,7 +110,7 @@ const heroStyles = {
     gap: 22,
     alignItems: 'center',
     flexWrap: 'wrap',
-    marginTop: 14,
+    marginTop: 8,
   },
   right: {
     position: 'relative',
@@ -116,7 +133,6 @@ const heroStyles = {
     display: 'block',
     filter: 'contrast(1.02)',
   },
-  // editorial gutter mark behind the portrait
   gutter: {
     position: 'absolute',
     right: 0,
@@ -158,40 +174,51 @@ const heroStyles = {
   },
 };
 
-const HERO_PAINS = [
-  ['01', 'Incohérence des supports'],
-  ['02', 'Manque de temps au quotidien'],
-  ['03', 'Outils compliqués à faire vivre'],
+const TRUST_ITEMS = [
+  ['10+', 'Structures accompagnées'],
+  ['Lille', 'et partout en France'],
+  ['100%', 'Fichiers livrés, vous êtes autonome'],
 ];
 
-function Hero({ portraitVariant = 'terre', showPainStrip = true }) {
+function Hero({ portraitVariant = 'terre', showTrustStrip = true }) {
   const portraitSrc = portraitVariant === 'nuit'
     ? 'assets/portrait-halftone-nuit.png'
     : 'assets/portrait-halftone-terre.png';
 
   return (
     <section style={heroStyles.section} data-screen-label="00 Hero">
+      <h1 style={heroStyles.srOnly}>Graphiste éco-responsable pour structures engagées</h1>
+
       <div style={heroStyles.inner}>
         <div style={heroStyles.left}>
           <p style={heroStyles.surtitle}>
             <span style={heroStyles.surtitleDot} />
-            Communication visuelle pensée pour la vraie vie
+            Graphiste &amp; partenaire créative basée à Lille
           </p>
-          <h1 style={heroStyles.h1}>
-            Votre communication ne devrait pas devenir un <em style={heroStyles.emp}>frein</em> à votre activité.
-          </h1>
 
-          {showPainStrip && <div style={heroStyles.painStrip}>
-            {HERO_PAINS.map(([n, label], i) => (
-              <div key={n} style={i === HERO_PAINS.length - 1 ? heroStyles.painCellLast : heroStyles.painCell}>
-                <span style={heroStyles.painNum}>{n}</span>
-                <span style={heroStyles.painLabel}>{label}</span>
-              </div>
-            ))}
-          </div>}
+          <p style={heroStyles.h1} aria-hidden="true" role="presentation">
+            Des supports pensés pour <em style={heroStyles.emp}>durer</em>,
+            évoluer et être vraiment utilisés.
+          </p>
+
+          <p style={heroStyles.sub}>
+            J'aide les structures engagées à créer une communication claire,
+            cohérente et facile à faire vivre au quotidien.
+          </p>
+
+          {showTrustStrip && (
+            <div style={heroStyles.trustStrip}>
+              {TRUST_ITEMS.map(([num, label], i) => (
+                <div key={i} style={i === TRUST_ITEMS.length - 1 ? heroStyles.trustCellLast : heroStyles.trustCell}>
+                  <span style={heroStyles.trustNum}>{num}</span>
+                  <span style={heroStyles.trustLabel}>{label}</span>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div style={heroStyles.ctaRow}>
-            <a href="#contact" className="btn btn--paille">Parlons de votre projet</a>
+            <a href="#services" className="btn btn--paille">Découvrir mes services</a>
             <a href="#realisations" className="btn-ghost">
               Voir les réalisations <span className="arrow">→</span>
             </a>
@@ -200,7 +227,7 @@ function Hero({ portraitVariant = 'terre', showPainStrip = true }) {
 
         <div style={heroStyles.right}>
           <div style={heroStyles.portraitWrap}>
-            <img src={portraitSrc} alt="Portrait halftone de Cindy" style={heroStyles.portrait} />
+            <img src={portraitSrc} alt="Portrait de Cindy, graphiste Seed to Bloom" style={heroStyles.portrait} />
           </div>
           <div style={heroStyles.gutter}>
             <span style={heroStyles.gutterNum}>00</span>
@@ -208,6 +235,7 @@ function Hero({ portraitVariant = 'terre', showPainStrip = true }) {
           </div>
         </div>
       </div>
+
       <div style={heroStyles.scrollHint}>
         <span>↓</span><span>défiler</span>
       </div>
