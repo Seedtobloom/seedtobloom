@@ -154,7 +154,7 @@ function ServicesDropdown() {
         aria-expanded={open}
         aria-haspopup="true"
       >
-        Services
+        Prestations
         <span style={{
           ...headerStyles.dropdownCaret,
           transform: open ? 'rotate(180deg)' : 'rotate(0deg)',

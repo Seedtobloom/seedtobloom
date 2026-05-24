@@ -1,5 +1,4 @@
-/* PainSection.jsx — Nuit surface.
-   Section problème métier : deux blocs d'audience, pain points, mini-preuve. */
+/* PainSection.jsx — Nuit surface. Section problème métier. */
 
 const psStyles = {
   section: {
@@ -14,7 +13,7 @@ const psStyles = {
   },
   head: {
     marginBottom: 72,
-    maxWidth: 700,
+    maxWidth: 780,
   },
   eyebrow: {
     fontFamily: 'var(--font-micro)',
@@ -32,7 +31,7 @@ const psStyles = {
   h2: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 'clamp(36px, 4.4vw, 62px)',
+    fontSize: 'clamp(36px, 4.4vw, 64px)',
     lineHeight: 1.04,
     letterSpacing: '-0.012em',
     margin: 0,
@@ -51,7 +50,7 @@ const psStyles = {
     padding: '40px 36px',
     display: 'flex',
     flexDirection: 'column',
-    gap: 24,
+    gap: 20,
   },
   cardLabel: {
     fontFamily: 'var(--font-micro)',
@@ -64,7 +63,7 @@ const psStyles = {
   cardTitle: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 28,
+    fontSize: 26,
     lineHeight: 1.15,
     color: 'var(--brume)',
     margin: 0,
@@ -77,7 +76,7 @@ const psStyles = {
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
-    gap: 12,
+    gap: 10,
   },
   painItem: {
     fontFamily: 'var(--font-body)',
@@ -89,19 +88,17 @@ const psStyles = {
     alignItems: 'baseline',
   },
   painDash: {
-    width: 14,
-    height: 1,
-    background: 'var(--brume)',
-    opacity: 0.35,
+    width: 14, height: 1,
+    background: 'var(--brume)', opacity: 0.3,
     flexShrink: 0,
     transform: 'translateY(-4px)',
     display: 'inline-block',
   },
-  preuve: {
+  punchline: {
     fontFamily: 'var(--font-display)',
     fontStyle: 'italic',
     fontWeight: 300,
-    fontSize: 18,
+    fontSize: 19,
     lineHeight: 1.4,
     color: 'var(--brume)',
     margin: 0,
@@ -111,43 +108,45 @@ const psStyles = {
   transition: {
     paddingTop: 56,
     borderTop: '1px solid var(--line-on-nuit)',
-    fontFamily: 'var(--font-body)',
-    fontSize: 20,
-    lineHeight: 1.55,
-    color: 'var(--fg-on-nuit-muted)',
-    maxWidth: 680,
+    maxWidth: 760,
     margin: '0 auto',
     textAlign: 'center',
+  },
+  transitionText: {
+    fontFamily: 'var(--font-body)',
+    fontSize: 19,
+    lineHeight: 1.6,
+    color: 'var(--fg-on-nuit-muted)',
+    margin: 0,
   },
   transitionEm: {
     fontFamily: 'var(--font-display)',
     fontStyle: 'italic',
     color: 'var(--brume)',
+    fontWeight: 400,
   },
 };
 
 const PAIN_BLOCS = [
   {
-    label: '01 · Structures & équipes',
-    title: ['Chargé·es de ', { em: 'communication' }],
+    label: '01 · Chargées de communication',
+    title: ['Vous passez plus de temps à corriger', { em: " qu'à communiquer." }],
     pains: [
-      'Les templates deviennent incohérents selon les équipes',
-      'Les fichiers sont difficiles à modifier sans aide',
-      'Chaque collaborateur adapte les supports différemment',
-      'La communication perd en cohérence avec le temps',
+      'Des templates impossibles à utiliser.',
+      'Des supports modifiés dans tous les sens.',
+      'Une communication qui perd en cohérence à chaque nouvelle version.',
     ],
-    preuve: '« Des supports beaux ne suffisent pas s\'ils deviennent impossibles à utiliser. »',
+    punchline: 'Tu passes plus de temps à corriger qu\'à communiquer.',
   },
   {
-    label: '02 · Métiers de bouche',
-    title: ['Traiteurs & petites ', { em: 'structures' }],
+    label: '02 · Traiteurs & entreprises locales',
+    title: ['Des opportunités perdues sans même', { em: " s'en rendre compte." }],
     pains: [
-      'Le site manque de clarté pour les prospects',
-      'Les demandes de devis arrivent mal qualifiées',
-      'Les visuels sont bricolés faute de temps et d\'outils',
-      'L\'image ne reflète pas la qualité réelle du service',
+      'Un site bricolé entre deux prestations.',
+      'Des informations difficiles à trouver.',
+      'Un parcours de commande qui décourage.',
     ],
-    preuve: '« Un bon site doit inspirer confiance avant même le premier contact. »',
+    punchline: 'Et derrière : des opportunités perdues sans même t\'en rendre compte.',
   },
 ];
 
@@ -160,8 +159,7 @@ function PainSection() {
             <span style={psStyles.eyebrowDot} />Le vrai problème
           </p>
           <h2 style={psStyles.h2}>
-            Une communication belle…<br />
-            mais difficile à faire <em style={psStyles.emp}>vivre</em>&nbsp;?
+            Votre communication ne devrait pas être un <em style={psStyles.emp}>frein</em> au quotidien.
           </h2>
         </div>
 
@@ -184,15 +182,18 @@ function PainSection() {
                   </li>
                 ))}
               </ul>
-              <p style={psStyles.preuve}>{b.preuve}</p>
+              <p style={psStyles.punchline}>{b.punchline}</p>
             </article>
           ))}
         </div>
 
-        <p style={psStyles.transition}>
-          Le problème n'est pas votre engagement.
-          C'est le manque d'<em style={psStyles.transitionEm}>outils pensés pour votre quotidien</em>.
-        </p>
+        <div style={psStyles.transition}>
+          <p style={psStyles.transitionText}>
+            Je crée des identités visuelles, supports et sites pensés pour être{' '}
+            <em style={psStyles.transitionEm}>beaux, clairs et réellement utilisables</em>{' '}
+            au quotidien.
+          </p>
+        </div>
       </div>
     </section>
   );

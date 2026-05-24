@@ -1,5 +1,5 @@
 /* Hero.jsx — Terre surface, éditoriale.
-   H1 SEO caché + surtitre + titre principal + sous-texte + CTAs + portrait halftone. */
+   Surtitre keywords • Titre solution • Sous-texte audience • CTAs • Portrait */
 
 const heroStyles = {
   section: {
@@ -29,10 +29,8 @@ const heroStyles = {
   },
   srOnly: {
     position: 'absolute',
-    width: 1,
-    height: 1,
-    padding: 0,
-    margin: -1,
+    width: 1, height: 1,
+    padding: 0, margin: -1,
     overflow: 'hidden',
     clip: 'rect(0,0,0,0)',
     whiteSpace: 'nowrap',
@@ -40,23 +38,31 @@ const heroStyles = {
   },
   surtitle: {
     fontFamily: 'var(--font-micro)',
-    fontSize: 11.5,
-    letterSpacing: '0.22em',
+    fontSize: 11,
+    letterSpacing: '0.18em',
     textTransform: 'uppercase',
     color: 'var(--fg-on-terre-muted)',
     display: 'inline-flex',
     alignItems: 'center',
-    gap: 12,
+    gap: 10,
     margin: 0,
+    flexWrap: 'wrap',
   },
   surtitleDot: {
-    width: 22, height: 1, background: 'var(--paille)', opacity: 0.55, display: 'inline-block',
+    width: 22, height: 1,
+    background: 'var(--paille)', opacity: 0.45,
+    display: 'inline-block', flexShrink: 0,
+  },
+  surtitleSep: {
+    opacity: 0.32,
+    fontStyle: 'normal',
+    fontSize: 9,
   },
   h1: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 'clamp(40px, 5.2vw, 78px)',
-    lineHeight: 1.03,
+    fontSize: 'clamp(38px, 4.8vw, 72px)',
+    lineHeight: 1.05,
     letterSpacing: '-0.015em',
     color: 'var(--paille)',
     margin: 0,
@@ -66,44 +72,11 @@ const heroStyles = {
   emp: { fontStyle: 'italic', color: 'var(--glycine)', fontWeight: 400 },
   sub: {
     fontFamily: 'var(--font-body)',
-    fontSize: 18,
-    lineHeight: 1.55,
+    fontSize: 17,
+    lineHeight: 1.6,
     color: 'var(--fg-on-terre-muted)',
     margin: 0,
-    maxWidth: 500,
-  },
-  trustStrip: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: 0,
-    marginTop: 6,
-    borderTop: '1px solid var(--line-on-terre)',
-    borderBottom: '1px solid var(--line-on-terre)',
-  },
-  trustCell: {
-    padding: '18px 20px 18px 0',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-    borderRight: '1px solid var(--line-on-terre)',
-  },
-  trustCellLast: {
-    padding: '18px 0 18px 20px',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 4,
-  },
-  trustNum: {
-    fontFamily: 'var(--font-display)',
-    fontStyle: 'italic',
-    fontSize: 17,
-    opacity: 0.65,
-  },
-  trustLabel: {
-    fontFamily: 'var(--font-body)',
-    fontSize: 14,
-    lineHeight: 1.35,
-    color: 'var(--paille)',
+    maxWidth: 520,
   },
   ctaRow: {
     display: 'flex',
@@ -115,7 +88,6 @@ const heroStyles = {
   right: {
     position: 'relative',
     alignSelf: 'end',
-    paddingBottom: 0,
   },
   portraitWrap: {
     position: 'relative',
@@ -126,8 +98,7 @@ const heroStyles = {
     overflow: 'hidden',
   },
   portrait: {
-    width: '100%',
-    height: '100%',
+    width: '100%', height: '100%',
     objectFit: 'cover',
     objectPosition: 'center top',
     display: 'block',
@@ -135,10 +106,7 @@ const heroStyles = {
   },
   gutter: {
     position: 'absolute',
-    right: 0,
-    top: 24,
-    bottom: 24,
-    width: 28,
+    right: 0, top: 24, bottom: 24, width: 28,
     pointerEvents: 'none',
     display: 'flex',
     flexDirection: 'column',
@@ -148,79 +116,68 @@ const heroStyles = {
   },
   gutterNum: {
     fontFamily: 'var(--font-display)',
-    fontStyle: 'italic',
-    fontSize: 14,
+    fontStyle: 'italic', fontSize: 14,
   },
   gutterWord: {
     writingMode: 'vertical-rl',
     transform: 'rotate(180deg)',
     fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    letterSpacing: '0.30em',
+    fontSize: 10, letterSpacing: '0.30em',
     textTransform: 'lowercase',
   },
   scrollHint: {
     position: 'absolute',
-    bottom: 24,
-    right: 40,
-    display: 'flex',
-    alignItems: 'center',
-    gap: 10,
+    bottom: 24, right: 40,
+    display: 'flex', alignItems: 'center', gap: 10,
     fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    letterSpacing: '0.26em',
+    fontSize: 10, letterSpacing: '0.26em',
     textTransform: 'uppercase',
     color: 'var(--fg-on-terre-muted)',
   },
 };
 
-const TRUST_ITEMS = [
-  ['10+', 'Structures accompagnées'],
-  ['Lille', 'et partout en France'],
-  ['100%', 'Fichiers livrés, vous êtes autonome'],
+const SURTITLE_ITEMS = [
+  'Graphiste éco-responsable',
+  'Identité visuelle',
+  'Supports de communication',
+  'Webdesign',
 ];
 
-function Hero({ portraitVariant = 'terre', showTrustStrip = true }) {
+function Hero({ portraitVariant = 'terre' }) {
   const portraitSrc = portraitVariant === 'nuit'
     ? 'assets/portrait-halftone-nuit.png'
     : 'assets/portrait-halftone-terre.png';
 
   return (
     <section style={heroStyles.section} data-screen-label="00 Hero">
-      <h1 style={heroStyles.srOnly}>Graphiste éco-responsable pour structures engagées</h1>
+      <span style={heroStyles.srOnly}>Graphiste éco-responsable pour structures engagées — Lille</span>
 
       <div style={heroStyles.inner}>
         <div style={heroStyles.left}>
           <p style={heroStyles.surtitle}>
             <span style={heroStyles.surtitleDot} />
-            Graphiste &amp; partenaire créative basée à Lille
+            {SURTITLE_ITEMS.map((item, i) => (
+              <React.Fragment key={i}>
+                {i > 0 && <span style={heroStyles.surtitleSep}>&nbsp;•&nbsp;</span>}
+                <span>{item}</span>
+              </React.Fragment>
+            ))}
           </p>
 
-          <p style={heroStyles.h1} aria-hidden="true" role="presentation">
-            Des supports pensés pour <em style={heroStyles.emp}>durer</em>,
-            évoluer et être vraiment utilisés.
-          </p>
+          <h1 style={heroStyles.h1}>
+            J'aide les structures engagées à construire une communication{' '}
+            <em style={heroStyles.emp}>claire, cohérente</em>{' '}
+            et facile à faire vivre.
+          </h1>
 
           <p style={heroStyles.sub}>
-            J'aide les structures engagées à créer une communication claire,
-            cohérente et facile à faire vivre au quotidien.
+            Pour les chargées de communication, PME engagées et traiteurs locaux qui veulent des supports beaux, utiles et pensés pour la vraie vie.
           </p>
 
-          {showTrustStrip && (
-            <div style={heroStyles.trustStrip}>
-              {TRUST_ITEMS.map(([num, label], i) => (
-                <div key={i} style={i === TRUST_ITEMS.length - 1 ? heroStyles.trustCellLast : heroStyles.trustCell}>
-                  <span style={heroStyles.trustNum}>{num}</span>
-                  <span style={heroStyles.trustLabel}>{label}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
           <div style={heroStyles.ctaRow}>
-            <a href="#services" className="btn btn--paille">Découvrir mes services</a>
+            <a href="#prestations" className="btn btn--paille">Découvrir mes prestations</a>
             <a href="#realisations" className="btn-ghost">
-              Voir les réalisations <span className="arrow">→</span>
+              Voir les projets <span className="arrow">→</span>
             </a>
           </div>
         </div>

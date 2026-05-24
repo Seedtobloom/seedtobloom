@@ -1,5 +1,4 @@
-/* Process.jsx — Bone surface.
-   Fonctionnement : 5 étapes numérotées, disposition liste avec hairlines. */
+/* Process.jsx — Bone surface. Collaboration en 4 étapes. */
 
 const procStyles = {
   section: {
@@ -98,34 +97,29 @@ const procStyles = {
 const STEPS = [
   {
     n: '1',
-    title: 'Comprendre vos usages réels',
-    body: 'Un appel de 30 minutes pour comprendre votre contexte, vos équipes, vos contraintes concrètes. Pas de questionnaire interminable.',
+    title: 'Comprendre',
+    body: 'On échange sur vos objectifs, vos contraintes et vos usages réels. Pas de questionnaire interminable — une conversation.',
   },
   {
     n: '2',
-    title: 'Identifier les blocages actuels',
-    body: 'On analyse ensemble ce qui freine votre communication au quotidien : fichiers inutilisables, incohérences, outils inadaptés.',
+    title: 'Concevoir',
+    body: 'Je crée des supports cohérents, utilisables et adaptés à votre quotidien. Pas à un cahier des charges théorique.',
   },
   {
     n: '3',
-    title: 'Construire des supports adaptés',
-    body: 'Des livrables pensés pour votre réalité. Pas pour un cahier des charges théorique que personne ne relit.',
+    title: 'Structurer',
+    body: 'Je mets en place des outils simples à reprendre par vos équipes. Fichiers organisés, templates clairs, documentation courte.',
   },
   {
     n: '4',
-    title: 'Simplifier leur utilisation',
-    body: 'Fichiers organisés, templates clairs, documentation courte. Vous repartez autonome, pas dépendant.',
-  },
-  {
-    n: '5',
-    title: 'Vous accompagner dans le temps',
-    body: 'En option : un forfait mensuel pour faire évoluer votre communication sans repartir de zéro à chaque nouveau besoin.',
+    title: 'Faire évoluer',
+    body: 'Votre communication continue d\'évoluer avec un accompagnement sur le long terme si besoin. Vous n\'êtes jamais seul·e.',
   },
 ];
 
 function Process() {
   return (
-    <section id="fonctionnement" style={procStyles.section} data-screen-label="09 Process">
+    <section id="fonctionnement" style={procStyles.section} data-screen-label="07 Process">
       <div style={procStyles.inner}>
         <div style={procStyles.head}>
           <div>
@@ -133,11 +127,11 @@ function Process() {
               <span style={procStyles.eyebrowDot} />Fonctionnement
             </p>
             <h2 style={procStyles.h2}>
-              Comment ça se passe <em style={procStyles.emp}>concrètement</em>.
+              Une collaboration <em style={procStyles.emp}>simple, claire</em> et pensée pour durer.
             </h2>
           </div>
           <p style={procStyles.intro}>
-            Cinq étapes simples, pensées pour aller vite et juste. Pas de processus sur-compliqué, pas de boucles de révision infinies.
+            Quatre étapes, pas plus. Pensées pour aller vite et juste, sans boucles de révision infinies.
           </p>
         </div>
 
