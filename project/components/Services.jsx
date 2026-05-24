@@ -148,7 +148,7 @@ const SERVICES = [
   {
     n: '03',
     tag: 'accompagnement · partenaire créative',
-    href: 'services.html#partenaire',
+    href: 'partenaire-creative.html',
     cta: 'Découvrir l\'accompagnement',
     title: ['Partenaire ', { em: 'créative' }],
     body: 'Un accompagnement long terme pour garder une communication cohérente sans tout gérer seule.',
