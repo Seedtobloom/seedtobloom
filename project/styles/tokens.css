@@ -1,0 +1,282 @@
+/* =====================================================================
+   Écrin Design System — colors & type
+   --------------------------------------------------------------------
+   PALETTE — fixed by user on 2026-05-23:
+
+     Primary
+       Terre   #412F21   chocolate-earth brown   (primary bg / surface)
+       Nuit    #051833   deep ink navy           (primary bg / surface)
+
+     Secondary
+       Glycine #E4D1FE   soft lavender            (accent / type / fill)
+       Brume   #BAD1FD   misted light blue        (accent / type on Nuit)
+
+     Type-on-color
+       Paille  #F2E5C2   warm parchment yellow    (TEXT on Terre)
+       Brume   #BAD1FD                            (TEXT on Nuit)
+
+   The legacy cream/cocoa/ink/sage tokens were removed in this pass.
+   ⚠️ Paille (#F2E5C2) was picked to match the prompt "jaune clair…
+   en écriture par dessus le marron" — flagged for user confirmation.
+   =====================================================================*/
+
+/* --- Webfonts (Google Fonts — substitutes; see README) ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter+Tight:wght@400;500;600&display=swap');
+
+:root {
+  /* ===== COLOR — primaries ========================================== */
+  --terre-900: #1a120a;
+  --terre-800: #291f15;
+  --terre:     #412F21;           /* canonical Terre */
+  --terre-600: #5c4633;
+  --terre-400: #8a6f54;
+  --terre-200: #c8b29a;
+
+  --nuit-900:  #020a1a;
+  --nuit:      #051833;           /* canonical Nuit */
+  --nuit-700:  #122444;
+  --nuit-500:  #2b3d5f;
+  --nuit-300:  #586c8e;
+
+  /* ===== COLOR — secondaries ======================================== */
+  --glycine-50:  #f7efff;
+  --glycine-200: #efddff;
+  --glycine:     #E4D1FE;         /* canonical Glycine */
+  --glycine-700: #a98bd6;
+  --glycine-900: #6c4ea4;
+
+  --brume-50:    #ecf2ff;
+  --brume-200:   #d5e3ff;
+  --brume:       #BAD1FD;         /* canonical Brume */
+  --brume-700:   #7c9bdc;
+  --brume-900:   #4a6ba8;
+
+  /* ===== COLOR — type-on-color ====================================== */
+  --paille-200: #fbf3d8;
+  --paille:     #F2E5C2;          /* canonical Paille — text on Terre */
+  --paille-700: #c9b585;
+
+  /* Bone (a very pale tint of Paille) — used as page background when
+     a neutral canvas is needed instead of one of the two primaries. */
+  --bone:   #fbf6e8;
+  --bone-d: #efe8d3;
+
+  /* ===== COLOR — semantic =========================================== */
+
+  /* Foreground (primary text) */
+  --fg-on-terre: var(--paille);
+  --fg-on-terre-muted: rgba(242, 229, 194, 0.72);
+  --fg-on-nuit: var(--brume);
+  --fg-on-nuit-muted: rgba(186, 209, 253, 0.72);
+  --fg-on-bone: var(--terre);
+  --fg-on-bone-muted: var(--terre-600);
+
+  /* Surfaces */
+  --bg-canvas: var(--bone);          /* default page bg */
+  --bg-primary-1: var(--terre);
+  --bg-primary-2: var(--nuit);
+  --bg-card: #fffaef;                /* very pale parchment for cards on bone */
+
+  /* Accents */
+  --accent-1: var(--glycine);        /* lavender — paired with Terre */
+  --accent-2: var(--brume);          /* misted blue — paired with Nuit */
+
+  /* Borders */
+  --line-on-bone: var(--bone-d);
+  --line-on-terre: rgba(242, 229, 194, 0.22);
+  --line-on-nuit:  rgba(186, 209, 253, 0.22);
+
+  /* Focus */
+  --focus-ring: var(--glycine);
+
+  /* ===== TYPE — families ============================================ */
+  --font-display: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --font-body:    'EB Garamond', Georgia, 'Times New Roman', serif;
+  --font-micro:   'Inter Tight', ui-sans-serif, system-ui, sans-serif;
+
+  /* ===== TYPE — scale =============================================== */
+  --fs-micro:   11px;
+  --fs-eyebrow: 12px;
+  --fs-small:   14px;
+  --fs-body:    17px;
+  --fs-lead:    20px;
+  --fs-h5:      22px;
+  --fs-h4:      28px;
+  --fs-h3:      36px;
+  --fs-h2:      48px;
+  --fs-h1:      64px;
+  --fs-display: 88px;
+
+  /* line-heights */
+  --lh-tight:   1.05;
+  --lh-snug:    1.18;
+  --lh-normal:  1.45;
+  --lh-loose:   1.65;
+
+  /* tracking */
+  --tr-tight:   -0.01em;
+  --tr-normal:  0;
+  --tr-eyebrow: 0.16em;
+  --tr-button:  0.10em;
+
+  /* ===== SHAPE / ELEVATION ========================================== */
+  --radius-0:  0px;
+  --radius-1:  2px;
+  --radius-2:  6px;
+  --radius-3:  10px;
+  --radius-pill: 999px;
+
+  --shadow-1: 0 1px 0 0 rgba(5, 24, 51, 0.06);
+  --shadow-2: 0 10px 28px -14px rgba(5, 24, 51, 0.20);
+  --shadow-3: 0 28px 64px -28px rgba(5, 24, 51, 0.30);
+
+  /* ===== SPACING ==================================================== */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  /* ===== MOTION ===================================================== */
+  --ease-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 140ms;
+  --dur-base: 240ms;
+  --dur-slow: 480ms;
+}
+
+/* =====================================================================
+   Semantic element styles — drop-in for raw HTML
+   =====================================================================*/
+
+html, body {
+  background: var(--bg-canvas);
+  color: var(--fg-on-bone);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, .h1 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tr-tight);
+  margin: 0 0 var(--sp-5);
+  text-wrap: balance;
+}
+
+h2, .h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--tr-tight);
+  margin: 0 0 var(--sp-4);
+  text-wrap: balance;
+}
+
+h3, .h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--sp-3);
+  text-wrap: balance;
+}
+
+h4, .h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h4);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--sp-3);
+}
+
+h5, .h5 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: var(--fs-h5);
+  line-height: var(--lh-snug);
+  margin: 0 0 var(--sp-2);
+}
+
+p {
+  margin: 0 0 var(--sp-4);
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: var(--lh-normal);
+}
+
+.eyebrow,
+.label-micro {
+  font-family: var(--font-micro);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: var(--tr-eyebrow);
+  text-transform: uppercase;
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-style: italic;
+  opacity: 0.75;
+}
+
+em, i, .italic { font-style: italic; }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: currentColor;
+  text-decoration-color: color-mix(in oklab, currentColor 35%, transparent);
+  transition: text-decoration-color var(--dur-base) var(--ease-standard);
+}
+a:hover { text-decoration-color: currentColor; }
+
+code, kbd, .mono { font-family: ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace; font-size: 0.92em; }
+
+hr { border: 0; border-top: 1px solid var(--line-on-bone); margin: var(--sp-7) 0; }
+
+::selection { background: var(--glycine); color: var(--terre); }
+
+/* Surface wrappers — drop these on a section to flip foreground */
+.on-terre {
+  background: var(--terre);
+  color: var(--paille);
+}
+.on-terre .eyebrow { color: var(--fg-on-terre-muted); }
+.on-terre a { text-decoration-color: color-mix(in oklab, var(--paille) 40%, transparent); }
+
+.on-nuit {
+  background: var(--nuit);
+  color: var(--brume);
+}
+.on-nuit .eyebrow { color: var(--fg-on-nuit-muted); }
+.on-nuit a { text-decoration-color: color-mix(in oklab, var(--brume) 40%, transparent); }
+
+/* Accent inversions — block on Glycine reads in Terre, block on Brume reads in Nuit */
+.on-glycine {
+  background: var(--glycine);
+  color: var(--terre);
+}
+.on-brume {
+  background: var(--brume);
+  color: var(--nuit);
+}

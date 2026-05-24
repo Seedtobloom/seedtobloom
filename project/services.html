@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services · Seedtobloom</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/site.css">
+<style>html,body{background:var(--terre);}</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="components/Header.jsx"></script>
+  <script type="text/babel" src="components/FinalCTA.jsx"></script>
+  <script type="text/babel" src="components/Footer.jsx"></script>
+  <script type="text/babel" src="components/StubPage.jsx"></script>
+
+  <script type="text/babel" data-presets="env,react">
+    const SERVICE_BLOCKS = [
+      {
+        title: ['Identité ', { em: 'visuelle' }],
+        body: 'Logo, palette, typographie, et une charte courte de 10 pages — pas un manuel de 80 pages que personne ne lit. Templates Canva ou InDesign fournis avec.',
+      },
+      {
+        title: ['Supports de ', { em: 'communication' }],
+        body: 'Print et digital : cartes, flyers, plaquettes, kakémonos, cartes de menus, étiquettes, devis, webdesign one-pager. Pensés selon les usages réels.',
+      },
+      {
+        title: ['Partenaire ', { em: 'créative' }],
+        body: 'Forfait mensuel 4 à 8 heures, une réunion stratégique par trimestre, accès direct par téléphone. Pour ne pas repartir de zéro à chaque besoin.',
+      },
+    ];
+
+    function Page() {
+      return (
+        <StubPage
+          crumb="Services"
+          gutterNum="01"
+          gutterWord="services"
+          title={['Trois manières de ', { em: 'travailler' }, ' ensemble.']}
+          intro="Du projet ponctuel à l'accompagnement long terme. À chaque fois, l'idée est la même : vous rendre autonome plutôt que dépendant."
+          note="Cette page est en cours de rédaction détaillée. Les trois pôles ci-dessous résument le périmètre — pour un devis, le mieux reste l'appel découverte."
+          blocks={SERVICE_BLOCKS}
+        />
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Page />);
+  </script>
+</body>
+</html>

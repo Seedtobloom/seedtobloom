@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>À propos · Seedtobloom</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/site.css">
+<style>html,body{background:var(--terre);}</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="components/Header.jsx"></script>
+  <script type="text/babel" src="components/FinalCTA.jsx"></script>
+  <script type="text/babel" src="components/Footer.jsx"></script>
+  <script type="text/babel" src="components/StubPage.jsx"></script>
+
+  <script type="text/babel" data-presets="env,react">
+    const ABOUT_BLOCKS = [
+      {
+        title: ['Mon ', { em: 'parcours' }],
+        body: 'Formée en design graphique éditorial, passée par deux studios lillois avant de m\'installer en indépendante en 2022. Aujourd\'hui basée à Lille, je travaille à 80% à distance.',
+      },
+      {
+        title: ['Ma vision du ', { em: 'design' }],
+        body: 'Le bon design ne se voit pas — il rend simplement les choses lisibles, utilisables, transmissibles. Le reste, c\'est du décor.',
+      },
+      {
+        title: ['Mon approche ', { em: 'responsable' }],
+        body: 'Pragmatique, pas dogmatique. Choix de papiers raisonnables, encres végétales quand pertinent, et surtout : ne produire que ce qui sera vraiment utilisé.',
+      },
+    ];
+
+    function Page() {
+      return (
+        <StubPage
+          crumb="À propos"
+          gutterNum="03"
+          gutterWord="à propos"
+          title={['Cindy, graphiste ', { em: 'éco-responsable' }, ' à l\'écoute de vos valeurs.']}
+          intro="Je crée des supports pour des structures qui n'ont pas le temps de s'occuper de leur communication, mais qui ont beaucoup à dire."
+          note="Page biographique complète en cours. En attendant, voici les trois angles qui reviennent le plus souvent quand on me demande qui je suis."
+          blocks={ABOUT_BLOCKS}
+        />
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Page />);
+  </script>
+</body>
+</html>

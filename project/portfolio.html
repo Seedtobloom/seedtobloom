@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio · Seedtobloom</title>
+<link rel="stylesheet" href="styles/tokens.css">
+<link rel="stylesheet" href="styles/site.css">
+<style>html,body{background:var(--terre);}</style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="components/Header.jsx"></script>
+  <script type="text/babel" src="components/FinalCTA.jsx"></script>
+  <script type="text/babel" src="components/Footer.jsx"></script>
+  <script type="text/babel" src="components/StubPage.jsx"></script>
+
+  <script type="text/babel" data-presets="env,react">
+    const PORTFOLIO_BLOCKS = [
+      {
+        title: ['Structures ', { em: 'engagées' }],
+        body: 'Associations, coopératives, projets à mission. Identités et systèmes de supports pensés pour des équipes terrain qui n\'ont pas de chargée de com.',
+      },
+      {
+        title: ['Traiteurs ', { em: '& food' }],
+        body: 'Cartes évolutives, étiquettes, devis, kakémonos. Conçus pour être réimprimés à la semaine sans repartir de zéro à chaque saison.',
+      },
+      {
+        title: ['Webdesign ', { em: '& branding' }],
+        body: 'Sites one-pager et identités complètes pour indépendants et petites équipes. Maquettes simples, mise à jour autonome.',
+      },
+    ];
+
+    function Page() {
+      return (
+        <StubPage
+          crumb="Portfolio"
+          gutterNum="02"
+          gutterWord="portfolio"
+          title={['Une sélection de projets ', { em: 'choisis' }, '.']}
+          intro="Trois familles principales. Une dizaine de projets visibles, le reste sur demande pour des raisons de confidentialité."
+          note="Page en cours de mise en ligne. Les études de cas détaillées arrivent au fur et à mesure — écrivez-moi pour recevoir les présentations PDF."
+          blocks={PORTFOLIO_BLOCKS}
+        />
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<Page />);
+  </script>
+</body>
+</html>

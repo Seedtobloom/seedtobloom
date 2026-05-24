@@ -1,0 +1,179 @@
+/* ============================================================
+   Seedtobloom — homepage styles
+   Extends tokens.css with page-level utilities + section rhythm.
+   Surface rhythm:  Terre → Bone → Nuit → Bone → Terre → Bone → Nuit → Terre → Nuit
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--fg-on-bone);
+  overflow-x: hidden;
+}
+
+/* ── Generic wrap ───────────────────────────────────────────── */
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 720px) {
+  .wrap { padding: 0 24px; }
+}
+
+/* ── Section padding ────────────────────────────────────────── */
+.section {
+  padding: 120px 0;
+  position: relative;
+}
+.section--tight { padding: 88px 0; }
+.section--air { padding: 144px 0; }
+
+/* ── Surface helpers (extend the on-* classes from tokens) ──── */
+.on-terre  { background: var(--terre);  color: var(--paille); }
+.on-nuit   { background: var(--nuit);   color: var(--brume); }
+.on-bone   { background: var(--bone);   color: var(--terre); }
+
+/* ── Type primitives ────────────────────────────────────────── */
+.eyebrow {
+  font-family: var(--font-micro);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px; height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.eyebrow--solo::before { display: none; }
+
+.on-terre .eyebrow { color: var(--fg-on-terre-muted); }
+.on-nuit  .eyebrow { color: var(--fg-on-nuit-muted); }
+.on-bone  .eyebrow { color: var(--terre-600); }
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(40px, 5.4vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  margin: 0;
+}
+.display em {
+  font-style: italic;
+  font-weight: 400;
+}
+.on-terre .display em { color: var(--glycine); }
+.on-nuit  .display em { color: var(--brume); opacity: 0.92; }
+.on-bone  .display em { color: var(--glycine-900); }
+
+.h-section {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(32px, 3.8vw, 52px);
+  line-height: 1.10;
+  letter-spacing: -0.01em;
+  margin: 0;
+  text-wrap: balance;
+}
+.h-section em { font-style: italic; font-weight: 400; }
+.on-terre .h-section em { color: var(--glycine); }
+.on-nuit  .h-section em { color: var(--brume); opacity: 0.95; }
+.on-bone  .h-section em { color: var(--glycine-900); }
+
+.lead {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── Buttons (per design system) ────────────────────────────── */
+.btn,
+.btn-ghost {
+  font-family: var(--font-micro);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: transform 240ms var(--ease-out-soft), background 240ms var(--ease-out-soft), color 240ms var(--ease-out-soft), border-color 240ms var(--ease-out-soft);
+  white-space: nowrap;
+  border: 0;
+}
+.btn {
+  padding: 15px 28px;
+  border-radius: 8px;
+}
+.btn--paille { background: var(--paille); color: var(--terre); }
+.btn--paille:hover { background: var(--glycine); transform: translateY(-2px); }
+.btn--glycine { background: var(--glycine); color: var(--terre); }
+.btn--glycine:hover { background: var(--glycine-700); color: var(--paille); transform: translateY(-2px); }
+.btn--brume { background: var(--brume); color: var(--nuit); }
+.btn--brume:hover { background: var(--brume-700); color: var(--nuit); transform: translateY(-2px); }
+
+.btn-ghost {
+  padding: 6px 0 6px;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  color: inherit;
+}
+.btn-ghost .arrow { transition: transform 240ms var(--ease-out-soft); display: inline-block; }
+.btn-ghost:hover .arrow { transform: translateX(6px); }
+
+/* ── Hairlines ──────────────────────────────────────────────── */
+.hairline-terre  { border-top: 1px solid var(--line-on-terre); }
+.hairline-nuit   { border-top: 1px solid var(--line-on-nuit); }
+.hairline-bone   { border-top: 1px solid var(--line-on-bone); }
+
+/* ── Editorial gutter motif (01 / profil rotated) ──────────── */
+.gutter-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  padding: 2px 0;
+}
+.gutter-mark .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1;
+  opacity: 0.9;
+}
+.gutter-mark .word {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: var(--font-micro);
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: lowercase;
+  opacity: 0.55;
+}
+
+/* ── Reset for buttons used as elements ─────────────────────── */
+button.btn-ghost, button.btn { font: inherit; }
+
+/* ── Focus visible (accessibility) ──────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
