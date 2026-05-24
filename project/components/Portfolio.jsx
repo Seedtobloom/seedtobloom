@@ -1,7 +1,4 @@
-/* Portfolio.jsx — Bone surface, 2x2 editorial grid.
-   Composition is intentionally different from the system mock (which uses a horizontal scroll row).
-   Each card is a single-column tile: typographic cover (warm gradient + project monogram),
-   then italic title, sector, year, and a ghost link. */
+/* Portfolio.jsx — Bone surface, 3 projets éditoriaux avec résultats concrets. */
 
 const portfolioStyles = {
   section: {
@@ -24,7 +21,7 @@ const portfolioStyles = {
   headLeft: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 24,
+    gap: 20,
   },
   eyebrow: {
     fontFamily: 'var(--font-micro)',
@@ -62,13 +59,13 @@ const portfolioStyles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '64px 56px',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '40px 32px',
   },
   card: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 18,
+    gap: 16,
     textDecoration: 'none',
     color: 'inherit',
   },
@@ -81,10 +78,7 @@ const portfolioStyles = {
   },
   thumbGutter: {
     position: 'absolute',
-    left: 14,
-    top: 14,
-    bottom: 14,
-    width: 22,
+    left: 14, top: 14, bottom: 14, width: 22,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -111,38 +105,37 @@ const portfolioStyles = {
     display: 'flex',
     alignItems: 'flex-end',
     justifyContent: 'flex-end',
-    padding: '0 28px 22px 0',
+    padding: '0 24px 18px 0',
   },
-  meta: {
-    display: 'flex',
-    gap: 14,
+  type: {
     fontFamily: 'var(--font-micro)',
-    fontSize: 10.5,
+    fontSize: 10,
     letterSpacing: '0.22em',
     textTransform: 'uppercase',
     color: 'var(--terre-600)',
+    margin: 0,
   },
-  metaDot: { opacity: 0.4 },
   title: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 30,
-    lineHeight: 1.12,
+    fontSize: 26,
+    lineHeight: 1.15,
     color: 'var(--terre)',
     margin: 0,
     textWrap: 'balance',
   },
   titleEm: { fontStyle: 'italic', fontWeight: 400 },
-  desc: {
+  result: {
     fontFamily: 'var(--font-body)',
-    fontSize: 15.5,
-    lineHeight: 1.5,
+    fontSize: 15,
+    lineHeight: 1.55,
     color: 'var(--terre-600)',
     margin: 0,
-    maxWidth: 440,
+    paddingTop: 10,
+    borderTop: '1px solid var(--line-on-bone)',
   },
   footer: {
-    marginTop: 88,
+    marginTop: 72,
     paddingTop: 32,
     borderTop: '1px solid var(--line-on-bone)',
     display: 'flex',
@@ -162,47 +155,33 @@ const portfolioStyles = {
 const PROJECTS = [
   {
     n: '01',
-    word: 'identité',
-    title: ['Envol ', { em: 'environnement' }],
-    sector: 'Structure engagée',
-    year: '2025',
-    desc: 'Identité visuelle complète et système de supports terrain pour une association environnementale en Hauts-de-France.',
+    word: 'supports',
+    type: 'Supports de communication & templates internes',
+    title: ['Envol ', { em: 'Environnement' }],
+    result: 'Une communication plus cohérente et des supports pensés pour être facilement réutilisés par les équipes.',
     mono: 'EE',
     bg: 'linear-gradient(140deg, #d6c9a8 0%, #8a7253 55%, #5b432b 100%)',
     accent: 'rgba(228, 209, 254, 0.35)',
   },
   {
     n: '02',
-    word: 'menu',
+    word: 'site',
+    type: 'Site internet & parcours de commande',
     title: ['Traiteur ', { em: 'Rémy' }],
-    sector: 'Traiteur · métiers de bouche',
-    year: '2024',
-    desc: 'Carte évolutive, étiquettes plats du jour et carte de visite — pensés pour être réimprimés à la semaine sans repartir de zéro.',
+    result: 'Un site plus clair, plus rassurant et pensé pour faciliter les demandes professionnelles.',
     mono: 'TR',
     bg: 'linear-gradient(160deg, #f3e5c1 0%, #c8b290 60%, #856a47 100%)',
     accent: 'rgba(186, 209, 253, 0.30)',
   },
   {
     n: '03',
-    word: 'site',
-    title: ['Marie ', { em: 'Minchella' }],
-    sector: 'Site one-pager · indépendante',
-    year: '2025',
-    desc: 'Webdesign et rédaction pour une thérapeute indépendante. Maquette simple, ton juste, mise à jour autonome.',
-    mono: 'MM',
+    word: 'identité',
+    type: 'Identité visuelle éco-responsable',
+    title: ['Projet ', { em: 'identité' }],
+    result: 'Une image plus crédible et alignée avec les engagements de la marque.',
+    mono: 'ID',
     bg: 'linear-gradient(135deg, #e4d1fe 0%, #b89bd9 55%, #6c4ea4 100%)',
     accent: 'rgba(242, 229, 194, 0.40)',
-  },
-  {
-    n: '04',
-    word: 'archives',
-    title: ['Autres ', { em: 'projets' }],
-    sector: 'Sélection · 2022 — 2025',
-    year: '',
-    desc: 'Une douzaine de collaborations plus discrètes : éditions, plaquettes, signalétique, refontes de cartes et chartes graphiques.',
-    mono: '+12',
-    bg: 'linear-gradient(150deg, #bad1fd 0%, #6f8bc2 55%, #2a3b5a 100%)',
-    accent: 'rgba(242, 229, 194, 0.35)',
   },
 ];
 
@@ -231,7 +210,7 @@ function ProjectCard({ project }) {
             fontFamily: 'var(--font-display)',
             fontStyle: 'italic',
             fontWeight: 300,
-            fontSize: 92,
+            fontSize: 80,
             lineHeight: 0.85,
             color: 'rgba(255, 250, 239, 0.86)',
             letterSpacing: '-0.02em',
@@ -239,10 +218,7 @@ function ProjectCard({ project }) {
         </div>
       </div>
 
-      <div style={portfolioStyles.meta}>
-        <span>{project.sector}</span>
-        {project.year && <><span style={portfolioStyles.metaDot}>·</span><span>{project.year}</span></>}
-      </div>
+      <p style={portfolioStyles.type}>{project.type}</p>
 
       <h3 style={portfolioStyles.title}>
         {project.title.map((part, i) =>
@@ -252,26 +228,26 @@ function ProjectCard({ project }) {
         )}
       </h3>
 
-      <p style={portfolioStyles.desc}>{project.desc}</p>
+      <p style={portfolioStyles.result}>{project.result}</p>
     </a>
   );
 }
 
 function Portfolio() {
   return (
-    <section id="realisations" style={portfolioStyles.section} data-screen-label="01 Portfolio">
+    <section id="realisations" style={portfolioStyles.section} data-screen-label="04 Portfolio">
       <div style={portfolioStyles.inner}>
         <div style={portfolioStyles.head}>
           <div style={portfolioStyles.headLeft}>
             <p style={portfolioStyles.eyebrow}>
-              <span style={portfolioStyles.eyebrowDot} />Réalisations sélectionnées
+              <span style={portfolioStyles.eyebrowDot} />Projets sélectionnés
             </p>
             <h2 style={portfolioStyles.h2}>
-              Quelques projets <em style={portfolioStyles.emp}>choisis</em>, pour le contexte&nbsp;réel.
+              Quelques projets conçus pour être <em style={portfolioStyles.emp}>utilisés</em>, pas juste regardés.
             </h2>
           </div>
           <p style={portfolioStyles.headRight}>
-            Identités, supports imprimés, sites simples. Toujours pensés pour être réutilisés par les équipes&nbsp;sans moi.
+            Identités, supports et sites — toujours pensés pour être repris par les équipes sans avoir besoin de moi.
           </p>
         </div>
 
@@ -280,7 +256,7 @@ function Portfolio() {
         </div>
 
         <div style={portfolioStyles.footer}>
-          <span style={portfolioStyles.footerCount}>04 / 16 projets visibles</span>
+          <span style={portfolioStyles.footerCount}>03 projets présentés</span>
           <a href="portfolio.html" className="btn-ghost" style={{ color: 'var(--terre)' }}>
             Voir le portfolio complet <span className="arrow">→</span>
           </a>

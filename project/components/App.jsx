@@ -1,8 +1,7 @@
 /* App.jsx — homepage root.
    Surface rhythm:
-   Hero(Terre) → Ticker(Terre) → PainSection(Nuit) → Approach(Terre) → Services(Bone)
-   → PensePour(Nuit) → Portfolio(Bone) → Differenciante(Terre) → Process(Bone)
-   → EditorialBanner(Nuit) → Testimonials(Bone) → AboutShort(Bone) → FAQ(Nuit)
+   Hero(Terre) → Ticker(Terre) → PainSection(Nuit) → Services(Bone) → Portfolio(Bone)
+   → Approach(Terre) → Process(Bone) → Testimonials(Bone) → FAQ(Nuit)
    → FinalCTA(Terre) → Footer(Nuit) */
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -45,15 +44,11 @@ function App() {
         <Hero portraitVariant={t.portraitVariant} showTrustStrip={t.showTrustStrip} />
         <Ticker />
         <PainSection />
-        <Approach />
         <Services />
-        <PensePour />
         <Portfolio />
-        <Differenciante />
+        <Approach />
         <Process />
-        <EditorialBanner />
         <Testimonials />
-        <AboutShort />
         <FAQ initialOpen={t.faqStartOpen ? 0 : -1} />
         <FinalCTA />
       </main>

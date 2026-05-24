@@ -1,5 +1,4 @@
-/* Ticker.jsx — seamless horizontal marquee, Terre surface (immediately after Hero).
-   Reinforces key phrases naturally for users and AI search crawlers. */
+/* Ticker.jsx — seamless horizontal marquee, Terre surface (après Hero). */
 
 (function () {
   const KF_ID = '__ticker-kf';
@@ -15,7 +14,7 @@
         display: flex;
         align-items: center;
         white-space: nowrap;
-        animation: ticker-slide 36s linear infinite;
+        animation: ticker-slide 40s linear infinite;
       }
       .ticker-track:hover { animation-play-state: paused; }
     `;
@@ -34,29 +33,30 @@ const tickerStyles = {
     fontFamily: 'var(--font-display)',
     fontStyle: 'italic',
     fontWeight: 300,
-    fontSize: 'clamp(17px, 2vw, 26px)',
+    fontSize: 'clamp(16px, 1.8vw, 24px)',
     color: 'var(--paille)',
-    padding: '0 44px',
+    padding: '0 36px',
     letterSpacing: '-0.005em',
     flexShrink: 0,
   },
-  dot: {
-    width: 5,
-    height: 5,
-    borderRadius: '50%',
-    background: 'var(--paille)',
-    opacity: 0.32,
+  sep: {
+    fontFamily: 'var(--font-micro)',
+    fontSize: 10,
+    color: 'var(--paille)',
+    opacity: 0.28,
+    letterSpacing: '0.08em',
     flexShrink: 0,
-    display: 'inline-block',
   },
 };
 
 const PHRASES = [
-  'Pensé pour durer. Conçu pour être utilisé.',
-  'Une communication claire, même à plusieurs.',
-  'Le durable commence par l\'utile.',
-  'Des supports adaptés à votre réalité.',
-  'Le beau ne sert à rien s\'il complique tout.',
+  'Communication claire',
+  'Supports durables',
+  'Templates faciles à utiliser',
+  'Design pensé pour durer',
+  'Identité cohérente',
+  'Communication responsable',
+  'Supports vraiment utiles',
 ];
 
 function Ticker() {
@@ -67,7 +67,7 @@ function Ticker() {
         {items.map((phrase, i) => (
           <React.Fragment key={i}>
             <span style={tickerStyles.phrase}>{phrase}</span>
-            <span style={tickerStyles.dot} />
+            <span style={tickerStyles.sep}>—</span>
           </React.Fragment>
         ))}
       </div>

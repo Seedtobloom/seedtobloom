@@ -1,6 +1,4 @@
-/* FAQ.jsx — Nuit surface, line-bordered cards (user-selected pattern).
-   Each row is a hairline-bounded "Q." card. Click to expand the answer inline.
-   The leftmost column carries the question number, italic; the right edge holds the +/− toggle. */
+/* FAQ.jsx — Nuit surface, 8 questions SEO. */
 
 const faqStyles = {
   section: {
@@ -56,11 +54,11 @@ const faqStyles = {
   },
   list: {
     display: 'grid',
-    gap: 14,
+    gap: 12,
   },
   rowBase: {
     border: '1px solid var(--line-on-nuit)',
-    transition: 'border-color 240ms var(--ease-out-soft), background 240ms var(--ease-out-soft)',
+    transition: 'border-color 240ms var(--ease-out-soft)',
     cursor: 'pointer',
     overflow: 'hidden',
     background: 'transparent',
@@ -70,38 +68,33 @@ const faqStyles = {
     textAlign: 'left',
     display: 'block',
   },
-  rowHover: {
-    borderColor: 'rgba(186, 209, 253, 0.45)',
-  },
-  rowOpen: {
-    borderColor: 'rgba(186, 209, 253, 0.65)',
-  },
+  rowHover: { borderColor: 'rgba(186, 209, 253, 0.45)' },
+  rowOpen:  { borderColor: 'rgba(186, 209, 253, 0.65)' },
   qLine: {
     display: 'grid',
-    gridTemplateColumns: '64px 1fr auto',
+    gridTemplateColumns: '56px 1fr auto',
     alignItems: 'center',
     gap: 24,
-    padding: '26px 32px',
+    padding: '22px 28px',
   },
   qNum: {
     fontFamily: 'var(--font-display)',
     fontStyle: 'italic',
-    fontSize: 18,
+    fontSize: 17,
     color: 'var(--brume)',
-    opacity: 0.55,
+    opacity: 0.5,
   },
   qText: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 22,
+    fontSize: 20,
     lineHeight: 1.25,
     color: 'var(--brume)',
     margin: 0,
   },
   qTextEm: { fontStyle: 'italic', fontWeight: 400 },
   toggle: {
-    width: 28,
-    height: 28,
+    width: 28, height: 28,
     border: '1px solid var(--line-on-nuit)',
     borderRadius: 999,
     display: 'flex',
@@ -119,23 +112,19 @@ const faqStyles = {
     transform: 'rotate(45deg)',
   },
   aLine: {
-    display: 'grid',
-    gridTemplateColumns: '64px 1fr auto',
-    gap: 24,
-    padding: '0 32px 28px',
-    color: 'var(--fg-on-nuit-muted)',
+    padding: '0 28px 24px',
+    paddingLeft: 108,
   },
   aText: {
     fontFamily: 'var(--font-body)',
     fontSize: 16,
-    lineHeight: 1.6,
+    lineHeight: 1.65,
     margin: 0,
     color: 'var(--fg-on-nuit-muted)',
-    gridColumn: '2 / 3',
     maxWidth: 640,
   },
   footer: {
-    marginTop: 72,
+    marginTop: 64,
     paddingTop: 32,
     borderTop: '1px solid var(--line-on-nuit)',
     display: 'flex',
@@ -155,35 +144,41 @@ const faqStyles = {
 
 const FAQ_ITEMS = [
   {
-    q: ['Comment se passe ', { em: 'une collaboration' }, ' avec vous ?'],
-    a: 'Toujours pareil : un appel découverte gratuit (30 min), puis un cahier de prise de brief écrit à quatre mains. Je propose ensuite un devis détaillé. Une fois validé, on travaille en deux étapes maximum : une direction posée, puis les déclinaisons. Pas de boucle de revue infinie.',
-    topic: 'fonctionnement',
+    q: ['Qu\'est-ce qu\'un ', { em: 'design éco-responsable' }, ' ?'],
+    a: 'Le design éco-responsable, c\'est concevoir des supports en tenant compte de leur impact réel : choix des matières (papiers recyclés, FSC), formats qui limitent les chutes, encres végétales si pertinent — et surtout, ne produire que ce qui sera vraiment utilisé. Le support le plus responsable reste celui qu\'on n\'imprime pas inutilement.',
   },
   {
-    q: ['Quels sont vos ', { em: 'délais' }, ' habituels ?'],
-    a: 'Identité visuelle complète : 4 à 6 semaines. Carte de menu ou plaquette : 10 à 14 jours. Site one-pager : 3 à 5 semaines. Je n\'accepte qu\'un projet de fond par mois pour garder du temps disponible pour mes clients en forfait.',
-    topic: 'délais',
+    q: ['Comment créer des supports ', { em: 'faciles à utiliser en interne' }, ' ?'],
+    a: 'En concevant des fichiers organisés, avec des templates bien structurés et une documentation courte. L\'objectif est que n\'importe quel membre de votre équipe puisse reprendre, modifier ou réimprimer un support sans avoir besoin de faire appel à un graphiste à chaque fois.',
   },
   {
-    q: ['Qu\'entendez-vous par ', { em: 'éco-conception' }, ' ?'],
-    a: 'Concrètement : choix des papiers (recyclés, FSC, formats qui ne génèrent pas de chute), encres végétales quand c\'est pertinent, et surtout : ne produire que ce qui sera vraiment utilisé. Le support le plus écologique reste celui qu\'on n\'imprime pas pour rien.',
-    topic: 'éco-conception',
+    q: ['Pourquoi une ', { em: 'identité visuelle cohérente' }, ' est importante ?'],
+    a: 'Une identité cohérente, c\'est ce qui permet à votre communication d\'être reconnaissable immédiatement. Quand chaque support parle le même langage visuel, vous gagnez en crédibilité, en clarté et en confiance — que ce soit auprès de clients, de partenaires ou d\'équipes en interne.',
   },
   {
-    q: ['Travaillez-vous ', { em: 'à distance' }, ' ?'],
-    a: 'Oui, principalement. Je suis basée à Lille mais 80 % de mes clients sont ailleurs en France. Visios ciblées, échanges écrits, et un Notion partagé pour suivre l\'avancement. Je me déplace pour les projets locaux ou les lancements importants.',
-    topic: 'collaboration',
+    q: ['Peut-on travailler ensemble ', { em: 'à distance' }, ' ?'],
+    a: 'Oui, principalement. Je suis basée à Lille mais la majorité de mes collaborations se font à distance : visios ciblées, échanges écrits efficaces, Notion partagé pour le suivi. Je me déplace pour les projets locaux ou les moments clés qui le nécessitent vraiment.',
   },
   {
-    q: ['À qui appartiennent ', { em: 'les fichiers' }, ' à la fin ?'],
-    a: 'À vous, sans condition. Vous recevez l\'ensemble des fichiers sources (.ai, .indd, .psd) et exportés, plus une licence d\'usage illimitée. C\'est précisé en clair sur le devis dès le départ. Aucune dépendance à long terme.',
-    topic: 'propriété',
+    q: ['Créez-vous aussi des ', { em: 'sites internet' }, ' ?'],
+    a: 'Oui — des sites simples, clairs et pensés pour être facilement mis à jour. Je travaille principalement sur des sites one-pager ou vitrines (Showit, Webflow, ou HTML statique selon le besoin). L\'objectif reste le même : que le site soit utile, pas juste joli.',
+  },
+  {
+    q: ['Les ', { em: 'templates' }, ' sont-ils modifiables facilement ?'],
+    a: 'C\'est justement l\'un des points centraux de ma façon de travailler. Les templates que je crée sont pensés pour être utilisés par des non-graphistes : fichiers Canva, InDesign ou Google Slides bien structurés, avec des zones de texte claires et une logique facile à comprendre.',
+  },
+  {
+    q: ['Travaillez-vous avec des ', { em: 'PME' }, ' ?'],
+    a: 'Oui. Je travaille avec des structures de toutes tailles : associations, PME, indépendants, artisans. Ce qui compte, c\'est moins la taille que le contexte : vous avez des supports à créer ou à faire évoluer, et vous voulez qu\'ils soient utiles sur le long terme.',
+  },
+  {
+    q: ['Comment rendre une ', { em: 'communication plus responsable' }, ' ?'],
+    a: 'En commençant par utiliser ce qui existe déjà, en évitant de sur-produire, et en concevant des supports pensés pour durer ou évoluer plutôt que d\'être remplacés tous les six mois. La responsabilité en communication passe aussi par la simplicité : moins de supports, mieux conçus, vraiment utilisés.',
   },
 ];
 
 function FAQRow({ item, index, open, onToggle }) {
   const [hover, setHover] = React.useState(false);
-
   return (
     <div
       style={{
@@ -221,7 +216,7 @@ function FAQRow({ item, index, open, onToggle }) {
       </button>
 
       <div style={{
-        maxHeight: open ? 320 : 0,
+        maxHeight: open ? 400 : 0,
         opacity: open ? 1 : 0,
         transition: 'max-height 400ms var(--ease-out-soft), opacity 280ms var(--ease-out-soft)',
         overflow: 'hidden',
@@ -238,7 +233,7 @@ function FAQ({ initialOpen = 0 }) {
   const [openIndex, setOpenIndex] = React.useState(initialOpen);
   React.useEffect(() => { setOpenIndex(initialOpen); }, [initialOpen]);
   return (
-    <section id="faq" style={faqStyles.section} data-screen-label="06 FAQ">
+    <section id="faq" style={faqStyles.section} data-screen-label="08 FAQ">
       <div style={faqStyles.inner}>
         <div style={faqStyles.head}>
           <div>
@@ -246,11 +241,11 @@ function FAQ({ initialOpen = 0 }) {
               <span style={faqStyles.eyebrowDot} />Questions fréquentes
             </p>
             <h2 style={faqStyles.h2}>
-              Tout ce que vous voudrez sans doute me <em style={faqStyles.emp}>demander</em>.
+              Tout ce que vous voulez savoir avant de <em style={faqStyles.emp}>commencer</em>.
             </h2>
           </div>
           <p style={faqStyles.intro}>
-            Cinq questions qui reviennent à chaque premier rendez-vous. Si la vôtre n'est pas là, écrivez-moi : j'enrichis cette page régulièrement.
+            Huit questions qui reviennent souvent. Si la vôtre n'est pas là, écrivez-moi directement.
           </p>
         </div>
 
@@ -267,10 +262,8 @@ function FAQ({ initialOpen = 0 }) {
         </div>
 
         <div style={faqStyles.footer}>
-          <p style={faqStyles.footerText}>Une autre question ? Posez-la simplement.</p>
-          <a href="contact.html" className="btn btn--brume">
-            Poser ma question
-          </a>
+          <p style={faqStyles.footerText}>Une autre question ? Posez-la directement.</p>
+          <a href="contact.html" className="btn btn--brume">Poser ma question</a>
         </div>
       </div>
     </section>

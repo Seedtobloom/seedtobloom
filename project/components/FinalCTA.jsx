@@ -1,6 +1,4 @@
-/* FinalCTA.jsx — Terre surface, a single editorial pull-block with a centered offer.
-   Uses a large italic phrase + a calm body line + Glycine button.
-   Visual signature: a "07" gutter + rotated "fin" word on the right edge. */
+/* FinalCTA.jsx — Terre surface, CTA final. */
 
 const ctaStyles = {
   section: {
@@ -35,22 +33,22 @@ const ctaStyles = {
   h: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 'clamp(48px, 6.2vw, 92px)',
+    fontSize: 'clamp(44px, 5.8vw, 88px)',
     lineHeight: 1.0,
     letterSpacing: '-0.015em',
     margin: 0,
     color: 'var(--paille)',
     textWrap: 'balance',
-    maxWidth: 940,
+    maxWidth: 920,
   },
   emp: { fontStyle: 'italic', color: 'var(--glycine)', fontWeight: 400 },
   lead: {
     fontFamily: 'var(--font-body)',
     fontSize: 19,
     lineHeight: 1.55,
-    color: 'var(--paille)',
+    color: 'var(--fg-on-terre-muted)',
     margin: '8px 0 0',
-    maxWidth: 540,
+    maxWidth: 560,
   },
   row: {
     marginTop: 22,
@@ -79,9 +77,7 @@ const ctaStyles = {
   },
   gutter: {
     position: 'absolute',
-    right: 16,
-    top: 24,
-    bottom: 24,
+    right: 16, top: 24, bottom: 24,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -106,16 +102,16 @@ const ctaStyles = {
 
 function FinalCTA() {
   return (
-    <section id="contact" style={ctaStyles.section} data-screen-label="07 CTA final">
+    <section id="contact" style={ctaStyles.section} data-screen-label="09 CTA final">
       <div style={ctaStyles.inner}>
         <p style={ctaStyles.eyebrow}>
           <span style={ctaStyles.eyebrowDot} />Et maintenant
         </p>
         <h2 style={ctaStyles.h}>
-          Vous avez déjà assez à <em style={ctaStyles.emp}>gérer</em>.
+          Une communication plus claire commence souvent par de <em style={ctaStyles.emp}>meilleurs outils</em>.
         </h2>
         <p style={ctaStyles.lead}>
-          Confiez-moi la partie communication : claire, cohérente, et surtout — finie une bonne fois pour toutes, sans repartir de zéro tous les six mois.
+          Parlons de vos besoins et construisons des supports pensés pour votre réalité.
         </p>
         <div style={ctaStyles.row}>
           <a href="contact.html" className="btn btn--glycine" style={{ padding: '18px 32px', fontSize: 12 }}>
@@ -128,7 +124,7 @@ function FinalCTA() {
         </div>
       </div>
       <div style={ctaStyles.gutter}>
-        <span style={ctaStyles.gutterNum}>07</span>
+        <span style={ctaStyles.gutterNum}>09</span>
         <span style={ctaStyles.gutterWord}>fin de page</span>
       </div>
     </section>

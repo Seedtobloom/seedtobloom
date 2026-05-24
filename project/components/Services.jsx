@@ -1,5 +1,4 @@
-/* Services.jsx — Bone surface, 3-column service pillars on a numbered grid.
-   Each pillar is a parchment card with a numeral, italic title, body, and 3 deliverables. */
+/* Services.jsx — Bone surface, 3 cartes prestations. */
 
 const svStyles = {
   section: {
@@ -40,7 +39,7 @@ const svStyles = {
     letterSpacing: '-0.012em',
     margin: 0,
     color: 'var(--terre)',
-    maxWidth: 580,
+    maxWidth: 600,
     textWrap: 'balance',
   },
   emp: { fontStyle: 'italic', color: 'var(--glycine-900)', fontWeight: 400 },
@@ -65,8 +64,7 @@ const svStyles = {
     padding: '36px 32px 30px',
     display: 'flex',
     flexDirection: 'column',
-    gap: 18,
-    minHeight: 480,
+    gap: 16,
     transition: 'transform 320ms var(--ease-out-soft), box-shadow 320ms var(--ease-out-soft)',
   },
   topRow: {
@@ -85,17 +83,20 @@ const svStyles = {
   },
   tag: {
     fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    letterSpacing: '0.26em',
+    fontSize: 9.5,
+    letterSpacing: '0.22em',
     textTransform: 'uppercase',
     color: 'var(--terre-600)',
+    textAlign: 'right',
+    maxWidth: 120,
+    lineHeight: 1.4,
   },
   title: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontSize: 28,
+    fontSize: 26,
     lineHeight: 1.12,
-    margin: '0',
+    margin: 0,
     color: 'var(--terre)',
     textWrap: 'balance',
   },
@@ -103,46 +104,21 @@ const svStyles = {
   body: {
     fontFamily: 'var(--font-body)',
     fontSize: 15.5,
-    lineHeight: 1.5,
+    lineHeight: 1.55,
     color: 'var(--terre-600)',
     margin: 0,
   },
-  divider: {
-    margin: '6px 0',
-    borderTop: '1px solid var(--line-on-bone)',
-  },
-  delivLabel: {
-    fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    letterSpacing: '0.26em',
-    textTransform: 'uppercase',
-    color: 'var(--terre-600)',
-    margin: 0,
-  },
-  delivList: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 8,
-  },
-  delivItem: {
+  bodyDetail: {
     fontFamily: 'var(--font-body)',
     fontSize: 14.5,
-    lineHeight: 1.4,
-    color: 'var(--terre)',
-    display: 'flex',
-    gap: 12,
-    alignItems: 'baseline',
+    lineHeight: 1.5,
+    color: 'var(--terre-400)',
+    margin: 0,
+    fontStyle: 'italic',
   },
-  delivBullet: {
-    width: 14,
-    height: 1,
-    background: 'var(--terre-400)',
-    display: 'inline-block',
-    transform: 'translateY(-4px)',
-    flexShrink: 0,
+  divider: {
+    margin: '4px 0',
+    borderTop: '1px solid var(--line-on-bone)',
   },
   cardFooter: {
     marginTop: 'auto',
@@ -156,13 +132,9 @@ const SERVICES = [
     tag: 'identité visuelle éco-responsable',
     href: 'identite-visuelle.html',
     cta: 'Découvrir l\'offre',
-    title: ['Identité ', { em: 'visuelle' }],
-    body: 'Créer une image claire, crédible et cohérente qui reflète réellement vos valeurs — et que vos équipes arrivent à faire vivre.',
-    deliv: [
-      'Logo, palette, typographie',
-      'Charte courte (10 pages max)',
-      'Templates Canva ou InDesign',
-    ],
+    title: ['Identité ', { em: 'visuelle' }, ' éco-responsable'],
+    body: 'Construire une image claire, crédible et cohérente avec vos engagements.',
+    detail: 'Logo, couleurs, typographies, direction visuelle, templates et règles d\'utilisation : tout est pensé pour rendre votre communication plus simple et plus identifiable.',
   },
   {
     n: '02',
@@ -170,25 +142,17 @@ const SERVICES = [
     href: 'supports-de-communication.html',
     cta: 'Voir les supports',
     title: ['Supports de ', { em: 'communication' }],
-    body: 'Des supports beaux, structurés et faciles à utiliser par vos équipes au quotidien — print, digital, signalétique.',
-    deliv: [
-      'Cartes, flyers, plaquettes, kakémonos',
-      'Cartes de menus, étiquettes, devis',
-      'Webdesign one-pager ou Showit',
-    ],
+    body: 'Des supports utiles, lisibles et faciles à prendre en main.',
+    detail: 'Print, réseaux sociaux, présentations, brochures, affiches, supports internes ou digitaux : je crée des outils adaptés à vos usages réels et aux personnes qui vont les utiliser.',
   },
   {
     n: '03',
-    tag: 'partenaire créative · accompagnement',
+    tag: 'accompagnement · partenaire créative',
     href: 'services.html#partenaire',
-    cta: 'En savoir plus',
+    cta: 'Découvrir l\'accompagnement',
     title: ['Partenaire ', { em: 'créative' }],
-    body: 'Un accompagnement long terme pour faire évoluer votre communication sans perdre en cohérence.',
-    deliv: [
-      '4 à 8 heures par mois',
-      'Réunion stratégique trimestrielle',
-      'Accès direct par téléphone et email',
-    ],
+    body: 'Un accompagnement long terme pour garder une communication cohérente sans tout gérer seule.',
+    detail: 'Je deviens votre relais créatif pour faire évoluer vos supports au fil de vos besoins.',
   },
 ];
 
@@ -217,18 +181,10 @@ function ServiceCard({ s }) {
       </h3>
       <p style={svStyles.body}>{s.body}</p>
       <div style={svStyles.divider} />
-      <p style={svStyles.delivLabel}>Ce que vous recevez</p>
-      <ul style={svStyles.delivList}>
-        {s.deliv.map((d, i) => (
-          <li key={i} style={svStyles.delivItem}>
-            <span style={svStyles.delivBullet} />
-            <span>{d}</span>
-          </li>
-        ))}
-      </ul>
+      <p style={svStyles.bodyDetail}>{s.detail}</p>
       <div style={svStyles.cardFooter}>
-        <a href={s.href || 'services.html'} className="btn-ghost" style={{ color: 'var(--terre)' }}>
-          {s.cta || 'En savoir plus'} <span className="arrow">→</span>
+        <a href={s.href} className="btn-ghost" style={{ color: 'var(--terre)' }}>
+          {s.cta} <span className="arrow">→</span>
         </a>
       </div>
     </article>
@@ -237,19 +193,19 @@ function ServiceCard({ s }) {
 
 function Services() {
   return (
-    <section id="services" style={svStyles.section} data-screen-label="03 Services">
+    <section id="prestations" style={svStyles.section} data-screen-label="03 Prestations">
       <div style={svStyles.inner}>
         <div style={svStyles.head}>
           <div>
             <p style={svStyles.eyebrow}>
-              <span style={svStyles.eyebrowDot} />Services
+              <span style={svStyles.eyebrowDot} />Prestations
             </p>
             <h2 style={svStyles.h2}>
-              Trois manières de travailler <em style={svStyles.emp}>ensemble</em>.
+              Des supports conçus pour <em style={svStyles.emp}>durer</em> et évoluer avec vous.
             </h2>
           </div>
           <p style={svStyles.intro}>
-            Du projet ponctuel à l'accompagnement long terme. À chaque fois, l'idée est la même : vous rendre autonome plutôt que dépendant.
+            Du projet ponctuel à l'accompagnement long terme. À chaque fois, l'objectif est le même : vous rendre autonome plutôt que dépendant.
           </p>
         </div>
 

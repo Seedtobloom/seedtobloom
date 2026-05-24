@@ -1,4 +1,4 @@
-/* Approach.jsx — Terre surface, citation éditoriale + philosophie + mini principes. */
+/* Approach.jsx — Terre surface, vision éditoriale + philosophie éco-responsable + CTA. */
 
 const apStyles = {
   section: {
@@ -12,12 +12,16 @@ const apStyles = {
     margin: '0 auto',
     padding: '0 40px',
     display: 'grid',
-    gridTemplateColumns: 'minmax(0, 1.4fr) minmax(0, 1fr)',
-    gap: 80,
+    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1.3fr)',
+    gap: 96,
     alignItems: 'start',
   },
   left: {
-    position: 'relative',
+    position: 'sticky',
+    top: 104,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 32,
   },
   eyebrow: {
     fontFamily: 'var(--font-micro)',
@@ -29,92 +33,49 @@ const apStyles = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 10,
-    margin: '0 0 40px',
+    margin: 0,
   },
   eyebrowDot: { width: 22, height: 1, background: 'var(--paille)', opacity: 0.55 },
-  quote: {
+  h2: {
     fontFamily: 'var(--font-display)',
     fontWeight: 300,
-    fontStyle: 'italic',
-    fontSize: 'clamp(36px, 4.8vw, 72px)',
-    lineHeight: 1.06,
+    fontSize: 'clamp(32px, 3.8vw, 52px)',
+    lineHeight: 1.08,
     letterSpacing: '-0.012em',
     margin: 0,
     color: 'var(--paille)',
     textWrap: 'balance',
   },
-  quoteAccent: { color: 'var(--glycine)' },
-  quoteAttribution: {
-    marginTop: 32,
-    paddingTop: 18,
-    borderTop: '1px solid var(--line-on-terre)',
-    display: 'flex',
-    gap: 20,
-    alignItems: 'center',
-    maxWidth: 360,
-  },
-  attribLabel: {
-    fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    letterSpacing: '0.26em',
-    textTransform: 'uppercase',
-    color: 'var(--fg-on-terre-muted)',
-  },
-  attribName: {
-    fontFamily: 'var(--font-display)',
-    fontStyle: 'italic',
-    fontSize: 17,
-    color: 'var(--paille)',
-  },
+  emp: { fontStyle: 'italic', color: 'var(--glycine)', fontWeight: 400 },
   right: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 28,
-    paddingTop: 56,
+    gap: 32,
+  },
+  pullQuote: {
+    borderLeft: '3px solid var(--glycine)',
+    paddingLeft: 28,
+    margin: 0,
+  },
+  pullQuoteText: {
+    fontFamily: 'var(--font-display)',
+    fontWeight: 300,
+    fontStyle: 'italic',
+    fontSize: 'clamp(22px, 2.6vw, 32px)',
+    lineHeight: 1.18,
+    color: 'var(--paille)',
+    margin: 0,
+    textWrap: 'balance',
   },
   body: {
     fontFamily: 'var(--font-body)',
     fontSize: 17,
     lineHeight: 1.6,
-    color: 'var(--paille)',
+    color: 'var(--fg-on-terre-muted)',
     margin: 0,
-  },
-  bodyMuted: { color: 'var(--fg-on-terre-muted)' },
-  visionFrame: {
-    position: 'relative',
-    border: '1px solid var(--line-on-terre)',
-    padding: '28px 28px 26px',
-    marginTop: 4,
-  },
-  visionLabel: {
-    position: 'absolute',
-    top: -9,
-    left: 22,
-    background: 'var(--terre)',
-    padding: '0 12px',
-    fontFamily: 'var(--font-micro)',
-    fontSize: 10,
-    fontWeight: 500,
-    letterSpacing: '0.30em',
-    textTransform: 'uppercase',
-    color: 'var(--paille)',
-  },
-  visionText: {
-    fontFamily: 'var(--font-display)',
-    fontStyle: 'italic',
-    fontWeight: 300,
-    fontSize: 22,
-    lineHeight: 1.3,
-    color: 'var(--paille)',
-    margin: 0,
-    textWrap: 'balance',
   },
   principlesWrap: {
-    maxWidth: 1240,
-    margin: '0 auto',
-    padding: '0 40px',
-    marginTop: 80,
-    paddingTop: 48,
+    paddingTop: 28,
     borderTop: '1px solid var(--line-on-terre)',
   },
   principlesLabel: {
@@ -124,29 +85,17 @@ const apStyles = {
     letterSpacing: '0.26em',
     textTransform: 'uppercase',
     color: 'var(--fg-on-terre-muted)',
-    margin: '0 0 28px',
+    margin: '0 0 20px',
   },
   principlesGrid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
-    gap: 0,
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '14px 32px',
   },
   principle: {
     display: 'flex',
     alignItems: 'flex-start',
-    gap: 12,
-    paddingRight: 32,
-    borderRight: '1px solid var(--line-on-terre)',
-    paddingLeft: 0,
-  },
-  principleFirst: {
-    paddingLeft: 0,
-    borderLeft: 'none',
-  },
-  principleLast: {
-    paddingRight: 0,
-    borderRight: 'none',
-    paddingLeft: 32,
+    gap: 10,
   },
   principleCheck: {
     color: 'var(--glycine)',
@@ -158,8 +107,8 @@ const apStyles = {
   },
   principleText: {
     fontFamily: 'var(--font-body)',
-    fontSize: 16,
-    lineHeight: 1.45,
+    fontSize: 15.5,
+    lineHeight: 1.4,
     color: 'var(--paille)',
     margin: 0,
   },
@@ -169,57 +118,50 @@ const PRINCIPLES = [
   'Concevoir pour durer',
   'Simplifier l\'utilisation',
   'Adapter aux équipes',
-  'Créer des supports réellement utiles',
+  'Produire ce qui sera vraiment utilisé',
 ];
 
 function Approach() {
   return (
-    <section id="approche" style={apStyles.section} data-screen-label="03 Approche">
+    <section id="approche" style={apStyles.section} data-screen-label="06 Approche">
       <div style={apStyles.inner}>
         <div style={apStyles.left}>
           <p style={apStyles.eyebrow}>
-            <span style={apStyles.eyebrowDot} />Approche · philosophie
+            <span style={apStyles.eyebrowDot} />Vision · approche
           </p>
-          <h2 style={apStyles.quote}>
-            Je ne crois pas aux <span style={apStyles.quoteAccent}>solutions parfaites</span>.<br />
-            Je crois aux choix cohérents avec vos usages et votre réalité.
+          <h2 style={apStyles.h2}>
+            Créer des supports <em style={apStyles.emp}>responsables</em>, oui. Mais surtout adaptés à votre réalité.
           </h2>
-          <div style={apStyles.quoteAttribution}>
-            <span style={apStyles.attribLabel}>Note · 2025</span>
-            <span style={apStyles.attribName}>Cindy, Seed to Bloom</span>
-          </div>
+          <a href="a-propos.html" className="btn-ghost" style={{ color: 'var(--paille)', alignSelf: 'flex-start' }}>
+            Découvrir ma façon de travailler <span className="arrow">→</span>
+          </a>
         </div>
 
         <div style={apStyles.right}>
+          <blockquote style={apStyles.pullQuote}>
+            <p style={apStyles.pullQuoteText}>
+              Je ne crois pas au design parfait. Je crois aux supports qu'on utilise vraiment, qu'on peut faire évoluer, et qui ne mettent pas en difficulté les équipes qui les tiennent.
+            </p>
+          </blockquote>
+
           <p style={apStyles.body}>
             « Durable » ne veut pas dire « toujours réutilisable ». Une carte de menu pour un traiteur n'a pas la même vie qu'une plaquette institutionnelle. Chaque support dépend de son contexte : qui le tient, où, quand, combien de fois.
           </p>
-          <p style={{ ...apStyles.body, ...apStyles.bodyMuted }}>
+          <p style={apStyles.body}>
             Ma vision du design éco-responsable est pragmatique : produire ce qui sera réellement utilisé, dans des formats et des matières qui font sens. Pas un argument vert collé sur un projet calqué d'ailleurs.
           </p>
-          <div style={apStyles.visionFrame}>
-            <span style={apStyles.visionLabel}>Vision</span>
-            <p style={apStyles.visionText}>
-              Une communication pragmatique, utile, et qui ne pèse pas sur celles et ceux qui la font vivre.
-            </p>
-          </div>
-        </div>
-      </div>
 
-      <div style={apStyles.principlesWrap}>
-        <p style={apStyles.principlesLabel}>Mini principes</p>
-        <div style={apStyles.principlesGrid}>
-          {PRINCIPLES.map((text, i) => (
-            <div key={i} style={{
-              ...apStyles.principle,
-              ...(i === 0 ? apStyles.principleFirst : {}),
-              ...(i === PRINCIPLES.length - 1 ? apStyles.principleLast : {}),
-              ...(i > 0 && i < PRINCIPLES.length - 1 ? { paddingLeft: 32 } : {}),
-            }}>
-              <span style={apStyles.principleCheck}>✔</span>
-              <p style={apStyles.principleText}>{text}</p>
+          <div style={apStyles.principlesWrap}>
+            <p style={apStyles.principlesLabel}>Ce que ça veut dire concrètement</p>
+            <div style={apStyles.principlesGrid}>
+              {PRINCIPLES.map((text, i) => (
+                <div key={i} style={apStyles.principle}>
+                  <span style={apStyles.principleCheck}>✔</span>
+                  <p style={apStyles.principleText}>{text}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

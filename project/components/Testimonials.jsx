@@ -137,23 +137,23 @@ const tmStyles = {
 const TESTIMONIALS = [
   {
     n: '01',
-    quote: 'Cindy a pris le temps de comprendre comment on travaille sur le terrain avant de proposer quoi que ce soit. On a enfin des supports qu\'on peut tenir dans le temps.',
+    quote: 'Les équipes utilisent enfin les templates correctement. On gagne un temps fou sur chaque nouvelle campagne — plus personne ne repart de zéro.',
     name: 'Léa M.',
-    role: 'Envol environnement',
+    role: 'Envol Environnement',
     project: 'Voir le projet',
   },
   {
     n: '02',
-    quote: 'Elle écrit comme on parle. Mes clients comprennent ma carte sans que je l\'explique. C\'est la première fois.',
+    quote: 'Depuis la refonte du site, les demandes entreprises ont augmenté. Les clients comprennent enfin ce qu\'on propose sans que j\'aie besoin de tout expliquer.',
     name: 'Rémy B.',
     role: 'Traiteur · Lille',
     project: 'Voir le projet',
   },
   {
     n: '03',
-    quote: 'Ce que j\'ai apprécié : pas de discours sur le branding. Des questions simples, des choix justes, un site qui me ressemble vraiment.',
+    quote: 'La communication est devenue beaucoup plus simple à gérer en interne. On n\'a plus besoin de faire appel à quelqu\'un à chaque fois qu\'on veut modifier un support.',
     name: 'Marie Minchella',
-    role: 'Thérapeute indépendante',
+    role: 'Chargée de communication',
     project: 'Voir le projet',
   },
 ];
