@@ -76,7 +76,7 @@ function Header() {
       boxShadow: scrolled ? '0 1px 0 var(--line-on-terre)' : 'none',
     }}>
       <div style={headerStyles.inner}>
-        <a href="#" style={headerStyles.logoLink} aria-label="Seedtobloom, accueil">
+        <a href="index.html" style={headerStyles.logoLink} aria-label="Seedtobloom, accueil">
           <span style={headerStyles.logoKicker}>studio</span>
           <span style={headerStyles.logoWord}>Seedtobloom</span>
         </a>
